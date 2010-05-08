@@ -3,7 +3,6 @@ require_once 'boot.php';
 Doctrine_Core::loadModels('include/models/generated');
 Doctrine_Core::loadModels('include/models');
 
-$user = get_logged_user();
 try {
     $route = route($_SERVER['REQUEST_URI'],$paterns);
     if(is_array($route)){
