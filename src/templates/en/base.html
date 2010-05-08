@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"Transitional"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="en">
+<head>
+<link rel="shortcut icon" href="/media/img/layout/miniLogo_dropShadow.png">
+<link href="/media/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/media/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/media/js/slideshow.js"></script>
+<script type="text/javascript" src="/media/js/heptafunctions.js"></script>
+<script type="text/javascript" src="/media/js/jquery.validate.min.js"></script>
+
+{% block head %}
+{% endblock %}
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<div id="container">
+<div id="header">
+<h2><img alt="Dîner en Blanc" src="/media/img/logo_dropShadow.png" id=logo ></h2>
+<p class="switch_lang">
+{% if lang == 'fr' %}
+<a href="/lang/en">English</a> - <u><a href="/lang/fr">Fran&ccedil;ais</a></u>
+{% else %}
+<u><a href="/lang/en">English</a></u> - <a href="/lang/fr">Fran&ccedil;ais</a>
+{% endif %}
+
+</p>
+<div style="clear:both">
+</div>
+<div id="menuBar">
+<ul class="menu">
+<li><a href="/">Home</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/photos">Images</a></li>
+<li><a href="/news">News</a></li>
+{% if isloged %}
+<li><a href="/mypage">My page</a></li>
+<li><a href="/contact">Contact</a></li>
+<li><a href="/purchase">Basket</a></li>
+<li><a href="/logout">Logout</a></li>
+{% else %}
+<li><a href="/registration">Register now!!</a></li>
+<li><a href="/login">Login</a></li>
+{% endif %}
+
+</ul>
+</div>
+</div>
+
+<div id="slideshow">
+
+<div class="active">
+<img src="/media/img/content/dinerEnBlanc1.jpg" alt="" class="active" />
+</div>
+<div>
+<img src="/media/img/content/dinerEnBlanc2.jpg" />
+</div>
+<div>
+<img src="/media/img/content/dinerEnBlanc3.jpg" />
+</div>
+
+<div>
+<img src="/media/img/content/dinerEnBlanc4.jpg" />
+</div>
+<div>
+<img src="/media/img/content/dinerEnBlanc5.jpg" />
+</div>
+</div>
+
+<div id="mainContent" class="clearfix">
+{% block body %}
+{% endblock %}
+</div>
+</div>
+
+<div id="footer">
+<p></p>
+</div>
+
+
+
+</body>
+</html>
+

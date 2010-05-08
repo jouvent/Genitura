@@ -1,0 +1,78 @@
+<?php
+class User
+{
+
+    public static function get($id){
+        $statement = "SELECT * FROM users WHERE id=:id";
+        $db = new PDO(SQL_URL,SQL_USER,SQL_PASS);
+        $sql = $db->prepare($statement);
+        $sql->bindParam(':id',$id);
+        $sql->execute();
+        return $sql->fetch();
+    }
+
+    public static function create($data){
+        $user = new User();
+        foreach($data as $key => $value){
+            $user->$key = $value;
+        }
+        return $user;
+    }
+
+    public static function all() {
+        $query = "SELECT * FROM user";
+        $db = new PDO(SQL_URL,SQL_USER,SQL_PASS);
+        $sql = $db->prepare($query);
+        $result = $sql->execute();
+        return $sql->fetchAll();
+    }
+
+    static function del($id){
+        $statement = "DELETE FROM users WHERE id=:id";
+        $db = new PDO(SQL_URL,SQL_USER,SQL_PASS);
+        $sql = $db->prepare($statement);
+        $sql->bindParam(':id',$id);
+        $sql->execute();
+    }
+
+    function is_valid(){
+        if(!empty($this->id) && !is_numeric($this->id)){
+            return false;
+        }
+        if(empty($this->username)){
+            return false;
+        }
+        if(empty($this->password)){
+            return false;
+        }
+        if(empty($this->email)){
+            return false;
+        }
+        return true;
+    }
+
+    function save(){
+        if(!empty($this->id)){
+            $statement = "UPDATE user 
+                SET id=:id, username=:username, password=:password, email=:email 
+                WHERE id = :id";
+        } else {
+            $statement = "INSERT INTO user 
+                (id, username, password, email) 
+                VALUES (:id, :username, :password, :email)";
+        }
+        $db = new PDO(SQL_URL,SQL_USER,SQL_PASS);
+        $sql = $db->prepare($statement);
+        $sql->bindParam(':id',$this->id);
+        $sql->bindParam(':username',$this->username);
+        $sql->bindParam(':password',$this->password);
+        $sql->bindParam(':email',$this->email);
+        if(!$sql->execute()){
+            print_r($sql->errorInfo());
+        }
+
+    }
+
+}
+
+

@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+
+#registration_step {
+    float: left;
+    width: 200px;
+    height: 500px;
+}
+
+#registration_step ul, #registration_step li {
+	list-style: none;
+	padding: 10px;
+}
+
+#registration_form {
+    float: right;
+    width: 700px;
+}
+
+#rules {
+    width: 600px;
+    height: 500px;
+    overflow:scroll;
+}

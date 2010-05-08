@@ -1,0 +1,124 @@
+#column_left {
+    width:50%;
+    float:left;
+}
+#column_right {
+    width:50%;
+    float:right;
+}
+#mainContent {
+    padding: 15px;
+}
+#search{
+	width: 218px;
+	float: right;
+	position: relative;
+	margin: -26px 15px 0 0;
+	padding: 7px 10px 5px 10px;
+	font-size: 12px;
+	text-decoration: none;
+	background-color:#BBBBBB;
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	z-index: 1;
+}
+
+.sub_menu{
+	margin: 0;
+	padding: 0;
+	cursor: default;
+	list-style: none;
+	display: inline;
+}
+
+.sub_menu li{
+	list-style: none;
+	display: inline;
+	padding: 20px;
+}
+
+.sub_menu li a{
+	color:#333333;
+	text-align: center;
+	color:
+}
+
+#sub_header{
+	width: 100%;
+	height: 20px;
+	padding: 5px 0 10px 0;
+	margin: 0 0 0 0;
+}
+
+#page {
+    padding: 15px;
+}
+
+.organisateur {
+	background-color: gold;
+}
+.organisateur_border {
+    border: 1px solid gold;
+}
+
+.groupe {
+	background-color: #A31A1A;
+}
+.groupe_border {
+    border: 1px solid #A31A1A;
+}
+
+.bus {
+	background-color: #1F2EA1;
+}
+.bus_border {
+    border: 1px solid #1F2EA1;
+}
+
+.invite {
+	background-color: #C1F39D;
+}
+.invite_border {
+    border: 1px solid #C1F39D;
+}
+
+#sub_header h2{
+	z-index: 0;
+}
+
+#sub_header a{
+	text-decoration: none;
+	color:#000000;
+}
+
+.box {
+    width:100%;
+    border:1px solid #999;
+}
+
+label {
+    display:block;
+}
+
+.right {
+    float:right;
+}
+
+.listing {
+    border: 1px solid black;
+    text-align: center;
+}
+.listing tr td {
+    padding: 5px;
+    border: 1px solid gray;
+}
+.data_box {
+    display:inline-block;
+    width: 230;
+    text-align: left;
+}
+.data_row {
+    text-align: right;
+}

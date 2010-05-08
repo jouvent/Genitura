@@ -1,0 +1,204 @@
+Group:
+  connection: 0
+  tableName: groups
+  columns:
+    id:
+      type: integer(4)
+      fixed: 0
+      unsigned: false
+      primary: true
+      autoincrement: true
+    name:
+      type: string(50)
+      fixed: 0
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    chief_id:
+      type: integer(4)
+      fixed: 0
+      unsigned: false
+      primary: false
+      autoincrement: false
+  relations:
+    Users:
+      class: User
+      local: id
+      foreign: group_id
+      type: many
+    Chief:
+      class: User
+      local: chief_id
+      foreign: id
+      type: one
+User:
+  connection: 0
+  tableName: users
+  columns:
+    id:
+      type: integer(4)
+      fixed: 0
+      unsigned: false
+      primary: true
+      autoincrement: true
+    invite_key:
+      type: string(8)
+      fixed: 0
+      unsigned: false
+      primary: false
+      autoincrement: false
+    inviter:
+      type: integer(4)
+      fixed: 0
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    recommended_by:
+      type: string(255)
+      fixed: 0
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    previous_deb:
+      type: integer(1)
+      fixed: 0
+      unsigned: false
+      default: 0
+      primary: false
+      notnull: true
+      autoincrement: false
+    invite_email:
+      type: string(255)
+      fixed: 0
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    invite_status:
+      type: integer(3)
+      fixed: 0
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    sex:
+      type: enum(1)
+      fixed: 0
+      unsigned: false
+      values:
+        - m
+        - f
+      primary: false
+      notnull: true
+      autoincrement: false
+    name:
+      type: string(256)
+      fixed: 0
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    address:
+      type: string(255)
+      fixed: 0
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    tel1:
+      type: string(20)
+      fixed: 0
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    tel2:
+      type: string(20)
+      fixed: 0
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    type:
+      type: string(1)
+      fixed: 1
+      unsigned: false
+      primary: false
+      default: S
+      notnull: true
+      autoincrement: false
+    login_email:
+      type: string(256)
+      fixed: 0
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    password:
+      type: string(256)
+      fixed: 0
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    is_admin:
+      type: integer(1)
+      fixed: 0
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    is_vip:
+      type: integer(1)
+      fixed: 0
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    is_blacklisted:
+      type: integer(1)
+      fixed: 0
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    fk_couple_id:
+      type: integer(4)
+      fixed: 0
+      unsigned: false
+      primary: false
+      autoincrement: false
+    fk_paypal:
+      type: integer(4)
+      fixed: 0
+      unsigned: false
+      primary: false
+      autoincrement: false
+    group_id:
+      type: integer(4)
+      fixed: 0
+      unsigned: false
+      primary: false
+      autoincrement: false
+    bus_chief_id:
+      type: integer(4)
+      fixed: 0
+      unsigned: false
+      primary: false
+      autoincrement: false
+  relations:
+    Group:
+      local: group_id
+      foreign: id
+      type: one
+    ChiefOf:
+      class: Group
+      local: id
+      foreign: chief_id
+      type: one

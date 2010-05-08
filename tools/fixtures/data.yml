@@ -1,0 +1,118 @@
+Couple:
+  Couple_0:
+  Couple_1:
+  Couple_2:
+Products:
+  Products_1:
+    name: table
+    name_en: table
+    description: 'c''est un table'
+    description_en: 'it''s a table'
+    price: '100.00'
+    taxes: yes
+    image_path: /images/table.jpeg
+  Products_2:
+    name: chaise
+    name_en: chair
+    description: 'c''est une chaise'
+    description_en: 'it''s a chair'
+    price: '20.00'
+    taxes: yes
+    image_path: /images/chair.jpeg
+  Products_3:
+    name: panier
+    name_en: basket
+    description: 'c''est un panier'
+    description_en: 'it''s a basket'
+    price: '30.00'
+    taxes: yes
+    image_path: /images/basket.jpeg
+User:
+  User_1:
+    id: 0
+    invite_key: null
+    inviter: '0'
+    recommended_by: '0'
+    previous_deb: y
+    invite_quotas: -1
+    invite_email: aymeric_pasquier@yahoo.com
+    invite_status: '5'
+    sex: m
+    name: 'Aymeric Pasquier'
+    address: Address
+    tel1: ''
+    tel2: ''
+    type: A
+    login_email: aymeric_pasquier@yahoo.com
+    password: 123
+    is_admin: '1'
+    is_vip: '0'
+    is_blacklisted: '0'
+    fk_paypal: null
+    Couple: Couple_1
+  User_2:
+    invite_key: null
+    inviter: '0'
+    recommended_by: '0'
+    previous_deb: y
+    invite_quotas: -1
+    invite_email: bobbyy111@aol.com
+    invite_status: '5'
+    sex: m
+    name: Bobby
+    address: Address
+    tel1: ''
+    tel2: ''
+    type: A
+    login_email: bobbyy111@aol.com
+    password: 123
+    is_admin: '1'
+    is_vip: '0'
+    is_blacklisted: '0'
+    fk_paypal: null
+    Couple: Couple_2
+  User_0:
+    invite_key: null
+    inviter: '0'
+    recommended_by: '0'
+    previous_deb: y
+    invite_quotas: -1
+    invite_email: julienhalle@heptacube.com
+    invite_status: '5'
+    sex: m
+    name: Heptacube
+    address: Address
+    tel1: ''
+    tel2: ''
+    type: A
+    login_email: julienhalle@heptacube.com
+    password: 123
+    is_admin: '1'
+    is_vip: '0'
+    is_blacklisted: '0'
+    fk_paypal: null
+    Couple: Couple_0
+  User_3:
+    invite_key: null
+    inviter: '0'
+    recommended_by: '0'
+    previous_deb: y
+    invite_quotas: -1
+    invite_email: daniel@heptacube.com
+    invite_status: '5'
+    sex: m
+    name: Heptacube
+    address: Address
+    tel1: ''
+    tel2: ''
+    type: A
+    login_email: daniel@heptacube.com
+    password: 123
+    is_admin: '1'
+    is_vip: '0'
+    is_blacklisted: '0'
+    fk_paypal: null
+    Couple: Couple_0
+Config:
+  Config_0:
+    nb_places: 2500
