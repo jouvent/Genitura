@@ -12,14 +12,14 @@ var $db;
 
 	function SQL_Class($db='deb')
 	{
-		$this->host = SQL_HOST;//"69.70.92.236";
+		$this->host = SQL_HOST;
 
 		switch($db)
 		{
 			case 'deb':
-				$this->user =SQL_USER;//"deb";
-				$this->passwd = SQL_PASS;//"sqldeb1234";
-				$this->db_name = SQL_DB;//"deb"
+				$this->user =SQL_USER;
+				$this->passwd = SQL_PASS;
+				$this->db_name = SQL_DB;
 				break;
 		}
 
