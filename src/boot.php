@@ -4,6 +4,7 @@
 $pwd = realpath(dirname(__FILE__)); // here we are
 $ps = PATH_SEPARATOR;
 
+set_include_path(get_include_path()."$ps$pwd/apps");
 set_include_path(get_include_path()."$ps$pwd/include");
 set_include_path(get_include_path()."$ps$pwd/include/vendors");
 
