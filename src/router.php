@@ -6,7 +6,7 @@
  */
 $paterns = array(
         // static pages
-        array('^$','cms::page',array('home')),
+        array('^$','flatpages::page',array('home')),
         // authentication
         array('^login$','auth::login_user',array()),
         array('^logout$','auth::logout_user',array()),
