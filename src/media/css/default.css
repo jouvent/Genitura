@@ -2,53 +2,54 @@ body {
     font:11px verdana, arial, helvetica, sans-serif;
     color:#333;
     background-color:white;
-    margin:50px 0px; padding:0px; /* Need to set body margin and padding to get consistency between browsers. */
-    text-align:center; /* Hack for IE5/Win */
+    margin:20px 0px;
+    padding:0px;
+    text-align:center;
 }
 
-h1 {
+#container {
+    width:800px;
+    margin:0px auto; /* Right and left margin widths set to "auto" */
+    padding:0px ; /* Right and left margin widths set to "auto" */
+    text-align:left; /* Counteract to IE5/Win Hack */
+}
+
+#title       { margin: 0; padding:0; }
+#switch_lang { margin-top: 0.6em; }
+
+h1, h2 {
     color:#333;
-    font:1.8em/1 Georgia, "Times New Roman", Times, serif;
-    font-weight:900;
-    font-style:italic;
+    font:1 Georgia, "Times New Roman", Times, serif;
 }
-h2 {
-    color:#333;
-    font:1.1em/1 Georgia, "Times New Roman", Times, serif;
-    font-weight:700;
-    margin:2em 0 .25em;
-}
-h3 {
-    color:#666;
-    font-size:1em;
-    font-weight:800;
-    margin:3em 0 .35em;
-}
+
+h1 { font-size:1.8em; font-weight:900; font-style:italic; }
+h2 { font-size:1.2em; font-weight:700; margin:2em 0 .25em; }
+h3 { font-size:1.0em; font-weight:800; margin:3em 0 .35em; color:#666; }
 
 a {
     color:#09c;
     text-decoration:none;
     font-weight:600;
 }
-a:link {color:#09c;}
+
+a:link    {color:#09c;}
 a:visited {color:#07a;}
-a:hover {background-color:white;}
+a:hover   {background-color:white;}
 
-
-#Content {
-    width:800px;
-    margin:0px auto; /* Right and left margin widths set to "auto" */
-    text-align:left; /* Counteract to IE5/Win Hack */
-    padding:15px;
+#content {
     border:1px dashed #333;
     background-color:#eee;
 }
-#nav, #nav li {
-    float: right;
+
+.nav, .nav li {
+    float: left;
     display: inline;
     margin: 0;
-    padding: 0;
+    padding:2 4;
     color: #339;
     font-weight: bold;
 }
 
+.clear { clear: both; }
+.left  { float: left; }
+.right { float: right; }
