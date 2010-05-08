@@ -9,12 +9,9 @@
  *
  * @category  Config
  * @package   HeptacubeFramework
- * @author    Vincent A. Menard <vincent@heptacube.com>
- * @author    Julien J. Halle <julienhalle@heptacube.com>
- * @copyright 2009 Heptacube inc.
- * @license   ?? TODO
- * @version   SVN: $Id$
- * @link      http://heptacube.com/
+ * @author    Julien J. Halle <julienhalle@gmail.com>
+ * @copyright 2010 Heptacube inc.
+ * @link      http://genitura.com/
  */
 
 setlocale(LC_TIME, "fr_FR");
@@ -28,8 +25,8 @@ define("ROOT", $pwd);
 define('UPLOAD',ROOT.'/upload/');
 
 //-- SQL settings --//
-define('SQL_USER','root');
+define('SQL_USER','');
 define('SQL_PASS','');
-define('SQL_DB','yasi');
-define('SQL_HOST','localhost');
+define('SQL_DB'  ,'');
+define('SQL_HOST','');
 define('SQL_URL','mysql:dbname='.SQL_DB.';host='.SQL_HOST);
