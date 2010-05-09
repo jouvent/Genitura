@@ -47,6 +47,9 @@ class session_class {
             $session->User = $user;
             $session->save();
             $this->session = $session;
+
+            $this->put_cook($session->session_key);
+            $this->logged = true;
 			return true;
         }
         return false;
@@ -62,11 +65,12 @@ class session_class {
 
 	function logout() {
 		setcookie('auth', '' , strtotime('-1 minutes'));
-		return $this->session->delete();
+        if($this->session)
+            return $this->session->delete();
 	}
 
     function get_logged_user() {
-        return $this->session->user;
+        return $this->session->User;
     }
 }
 ?>

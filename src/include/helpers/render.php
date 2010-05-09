@@ -8,10 +8,8 @@ function render($template_name, $variables = array()){
     $globals = array(
         'lang' => $_COOKIE['deb_lang'], 
         'IMG_URL' => IMG_URL,
-        'isloged' => $session->isLogged(),
+        'islogged' => $session->isLogged(),
         'logged' => $logged,
     );
-    echo $session->isLogged();
-    //print_r($session);
     return $h2o->render(array_merge($globals,$variables));
 }
