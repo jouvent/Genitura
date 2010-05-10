@@ -2,6 +2,7 @@ RewriteEngine on
 
 RewriteBase /
 RewriteCond %{REQUEST_URI} !^/o/
+RewriteCond %{REQUEST_URI} !^/i18n/
 RewriteCond %{REQUEST_URI} !^/test.php
 RewriteRule !\.(js|ico|txt|gif|jpg|png|css)$ index.php
 

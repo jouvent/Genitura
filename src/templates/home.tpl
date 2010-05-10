@@ -6,14 +6,11 @@
 
 
 {% block body %}
-<p>Chers amis,</p>
-<p>près d'un mois après le premier Dîner en Blanc, les souvenirs d'une soirée hors du commun pétillent toujours dans nos têtes.</p>
-<p>Nous avons réuni pour vous, les reportages, articles, et autres liens qui traitent du premier Dîner en Blanc. Vous les trouverez plus bas dans le document "Revue de Presse" disponible en téléchargement.</p>
-<p>Au nom de tous ceux qui ont travaillé de près ou de loin a préparer cette soirée, nous vous remercions de nous avoir envoyé tant de remerciements et d'encouragement. Nous vous les retournons bien chaleureusement.</p>
-<p>Nous vous félicitons a notre tour d'avoir répondu présent à cette première édition et d'avoir été aussi chics et festifs. Vous avez fait honneur à Montréal et au Dîner en Blanc !</p>
+<h2>{% trans "What is Genitura?" %}</h2>
 
-<p>A tous ceux qui ont bravé les nuages menaçants, nous vous donnons rendez-vous l'année prochaine pour une deuxième édition aussi secrète que magique.</p>
-<p>Ensembles, nous pouvons dire pour le premier Dîner en Blanc en Amérique "Nous étions la !"</p>
-<p>Merci a tous et à l'année prochaine !!</p>
-<p>Le comité du D.E.B.</p>
+ <p>{% blocktrans %}Genitura is a PHP framework created by Heptacube engineers for optimizing Web applications development. It takes advantage of the Model View Controller (MVC) architectural pattern to shorten development time, boost quality and simplify maintenance of PHP applications.{% endblocktrans %}</p>
+
+<h2>Why use a framework?</h2>
+
+<p>Using a software framework for developing applications, in this case a PHP Web application, has the advantage of building consistency throughout an individual or company's work. Building multiple applications with the same framework usually makes them similar and simple in structure, therefore making it easier for multiple people to work on the same project, or for someone to take over the work started by someone else. </p>
 {% endblock %}

@@ -12,7 +12,7 @@ class If_Tag extends H2o_Node {
     
     function __construct($argstring, $parser, $position = 0) {
         if (preg_match('/\s(and|or)\s/', $argstring)) 
-            throw new TemplateSyntaxError('H2o doesn\'t support multiple expressions');
+            throw new TemplateSyntaxError('H2o doesn\'t support multiple expressiosn');
 
         $this->body = $parser->parse('endif', 'else');
         
@@ -122,7 +122,7 @@ class Block_Tag extends H2o_Node {
     public $name;
     public $position;
     public $stack;
-    private $syntax = '/^[a-zA-Z_][a-zA-Z0-9_-]*$/';
+    private $syntax = '/^[a-zA-Z_][a-zA-Z0-9_]*$/';
     
     function __construct($argstring, $parser, $position) {
         if (!preg_match($this->syntax, $argstring))
@@ -277,7 +277,7 @@ class Load_Tag extends H2o_Node {
     private $extension;
 
     function __construct($argstring, $parser, $pos = 0) {
-        $this->extension = stripcslashes(preg_replace("/^[\"'](.*)[\"']$/", "$1", $argstring));
+        $this->extension = stripcslashes(substr($argstring, 1, -1));
         
         if ($parser->runtime->searchpath)
             $this->appendPath($parser->runtime->searchpath);
@@ -346,7 +346,7 @@ class Now_Tag extends H2o_Node {
 class Autoescape_Tag extends H2o_Node {
     protected $enable;
     
-    function __construct($argstring, $parser, $pos = 0) {
+    function __constrcut($argstring, $parser, $pos = 0) {
         if ($argstring === 'on')
             $this->enable = true;
         elseif ($argstring === 'off')
@@ -361,22 +361,5 @@ class Autoescape_Tag extends H2o_Node {
     }
 }
 
-class Csrf_token_Tag extends H2o_Node {
-    function render($context, $stream) {
-        $token = "";
-        if (isset($_COOKIE["csrftoken"]))
-            $token = $_COOKIE["csrftoken"];
-        else {
-            global $SECRET_KEY;
-            if (defined('SECRET_KEY'))
-                $token = md5(mt_rand() . SECRET_KEY);
-            else
-                $token = md5(mt_rand());
-        }
-        setcookie("csrftoken", $token, time()+60*60*24*365, "/");
-        $stream->write("<div style='display:none'><input type=\"hidden\" value=\"$token\" name=\"csrfmiddlewaretoken\" /></div>");
-    }
-}
-
-H2o::addTag(array('block', 'extends', 'include', 'if', 'for', 'with', 'cycle', 'load', 'debug', 'now', 'autoescape', 'csrf_token'));
+H2o::addTag(array('block', 'extends', 'include', 'if', 'for', 'with', 'cycle', 'load', 'debug', 'now', 'autoescape'));
 ?>

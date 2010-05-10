@@ -47,7 +47,7 @@ class H2o {
         ), $options);
     }
     
-    function __construct($file = null, $options = array()) {
+    function __construct($file = '', $options = array()) {
         # Init a environment
         $this->options = $this->getOptions($options);        
         $loader = $this->options['loader'];
@@ -59,29 +59,37 @@ class H2o {
             $this->loader = $loader;
             $this->loader->setOptions($this->options);
         } else {
-            $loader = "H2o_{$loader}_Loader";
-            if (!class_exists($loader))
+            $loaderClass = "H2o_{$loader}_Loader";
+            if (!class_exists($loaderClass))
                 throw new Exception('Invalid template loader');
                 
             if (isset($options['searchpath']))
                 $this->searchpath = realpath($options['searchpath']).DS;
-            elseif ($file)
-                $this->searchpath = dirname(realpath($file)).DS;
             else
-                $this->searchpath = getcwd().DS;
-
-            $this->loader = new $loader($this->searchpath, $this->options);        
+                $this->searchpath = dirname(realpath($file)).DS;
+            $this->loader = new $loaderClass($this->searchpath, $this->options);        
         }
-        $this->loader->runtime = $this;
         
         if (isset($options['i18n'])) {
+            $i18n_options = array();            
+            if (is_array($options['i18n'])) {
+                $i18n_options = $options['i18n'];
+            }
+            
             h2o::load('i18n');
-            $this->i18n = new H2o_I18n($this->searchpath, $options['i18n']);
+            $this->i18n = new H2o_I18n($this->searchpath, $i18n_options);
+        } else if (isset($options['php-i18n'])) {
+            $i18n_options = array();            
+            if (is_array($options['php-i18n'])) {
+                $i18n_options = $options['php-i18n'];
+            }
+            
+            h2o::load('php-i18n');
+            $this->i18n = new H2o_I18n($this->searchpath, $i18n_options);
         }
-    
-        if ($file) {
-            $this->nodelist = $this->loadTemplate($file);
-        }
+        
+        $this->loader->runtime = $this;
+        $this->nodelist = $this->loadTemplate($file);
     }
 
     function loadTemplate($file) {

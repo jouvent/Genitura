@@ -8,7 +8,7 @@ class H2o_Loader {
     public $parser;
     public $runtime;
     public $cached = false;
-    protected $cache = false;
+    private $cache = false;
     public $searchpath = false;
     
     function read($filename) {}

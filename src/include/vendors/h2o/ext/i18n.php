@@ -282,7 +282,8 @@ class H2o_I18n {
     
           if (!is_dir($lc_messages))
               mkdir($lc_messages);
-          $cmd = $this->gettext_path."msgfmt --check-format -o \"{$mo_file}\" \"{$po_file}\"";
+    
+          $cmd = $this->gettext_path."msgfmt --check-format -o {$mo_file} {$po_file}";
           exec($cmd, $return);
       }
     }

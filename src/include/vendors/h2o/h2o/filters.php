@@ -87,7 +87,7 @@ class StringFilters extends FilterCollection {
     }
     
     static function truncate ($string, $max = 50, $ends = '...') {
-		return (strlen($string) > $max ? substr($string, 0, $max).$ends : $string);
+        return str_replace($string, $ends, $max - strlen($ends));
     }
     
     static function limitwords($text, $limit = 50, $ends = '...') {
@@ -252,10 +252,8 @@ class DatetimeFilters extends FilterCollection {
     static function date($time, $format = 'jS F Y H:i') {
         if ($time instanceof DateTime) 
             $time  = (int) $time->format('U');
-        if (!is_numeric($time)) 
-          $time = strtotime($time);
-          
-        return date($format, $time);
+
+        return date($format, strtotime($time));
     }
 
     static function relative_time($timestamp, $format = 'g:iA') {

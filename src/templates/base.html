@@ -10,7 +10,7 @@
 <body>
     <div id="container">
         <div id="header">
-            <h1 class="left" id="title" >Genitura</h1>
+            <h1 class="left" id="title" > & Genitura</h1>
             <ul class="nav right" id="switch_lang" >
                 {% if lang == 'fr' %}
                 <li> <a href="/lang/en">English</a> </li>
@@ -22,17 +22,17 @@
             </ul>
             <div class="clear"></div>
             <ul class="nav left">
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/about">A propos</a></li>
-                <li><a href="/photos">Images</a></li>
-                <li><a href="/news">Nouvelles</a></li>
+                <li><a href="/">{% trans "Home" %}</a></li>
+                <li><a href="/about">{% trans "About" %}</a></li>
+                <li><a href="/photos">{% trans "Images" %}</a></li>
+                <li><a href="/news">{% trans "News" %}</a></li>
             </ul>
             <ul class="nav right">
                 {% if islogged %}
                 <li>{{logged.username}}</li>
-                <li><a href="/logout">D&eacute;conexion</a></li>
+                <li><a href="/logout">{% trans "Logout" %}</a></li>
                 {% else %}
-                <li><a href="/login">Connexion</a></li>
+                <li><a href="/login">{% trans "Login" %}</a></li>
                 {% endif %}
             </ul>
         </div>
