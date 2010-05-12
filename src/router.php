@@ -33,9 +33,6 @@ function route($url, array $routes){
     // enlever le premier / qui est innutile
     $url = substr($url,1);
     // enlever les parametres GET
-    if( strpos($url,'?') !== false){
-        $url = substr($url,0, strpos($url,'?'));
-    }
     foreach($routes as $route){
         if(is_array($options = match($url,$route[0]))){
             $route[2] = array_merge($route[2],$options);
@@ -67,10 +64,7 @@ function match($url, $patern){
 /* include and run given route */
 function load(array $route){
     $location = explode('::',$route[1]);
-    require_once($location[0].'/controllers.php');
-    if(file_exists($location[0].'/models.php')){
-        require_once($location[0].'/models.php');
-    }
+    require_once($location[0].'/init.php');
     return call_user_func_array($location[1],$route[2]);
 }
 ?>
