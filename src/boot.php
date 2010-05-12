@@ -13,7 +13,6 @@ require_once 'configs.inc.php'; // the app configurations
 require_once 'router.php'; // the url mappings
 require_once 'helpers/render.php';
 require_once 'helpers/requests.php';
-require_once 'helpers/users.php';
 require_once 'helpers/security.php';
 require_once 'helpers/errors.php';
 require_once 'helpers/upload.php';
