@@ -14,12 +14,11 @@ class session_class {
 
 		// check for valid a cookie.
 		if (isset($_COOKIE['auth'])) {
-            $session = Session::getSession($_COOKIE['auth'],getenv('REMOTE_ADDR'),strtotime('+2'));
+            $this->session = Session::getSession($_COOKIE['auth'],getenv('REMOTE_ADDR'),strtotime('+2'));
 		}
-        if( $session && $session->exists() ) {
-            $session->expiration = strtotime('+59 minutes');
+        if( $this->session && $session->exists() ) {
+            $this->session->expiration = strtotime('+59 minutes');
             $this->logged = true;
-            $this->session = $session;
         }
 	}
 
@@ -27,7 +26,6 @@ class session_class {
 	 * @desc Tell us if the cookie have been checked.
 	 * @return true is cookie is good, false otherwise.
 	 */
-
 	function islogged() {
 		return $this->logged ;
 	}
@@ -70,7 +68,9 @@ class session_class {
 	}
 
     function get_logged_user() {
-        return $this->session->User;
+        if($this->session) {
+            return $this->session->User;
+        }
     }
 }
 ?>

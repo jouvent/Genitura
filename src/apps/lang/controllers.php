@@ -1,16 +1,16 @@
 <?php
 
 function en(){
-    return switch_Lang('en');
+    return set_Lang('en');
 }
 
 function fr(){
-    return switch_Lang('fr');
+    return set_Lang('fr');
 }
 
-function switch_lang($lang)
+function set_lang($lang)
 {
-	setcookie('deb_lang', $lang , time()+60*60*24*30, '/');
+	setcookie('lang', $lang , time()+60*60*24*30, '/');
 
 	return redirect($_SERVER['HTTP_REFERER']);
 }

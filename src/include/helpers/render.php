@@ -7,8 +7,8 @@ function render($template_name, $variables = array()){
         'locale' => $lang,
         'charset' => 'UTF-8',
         'gettext_path' => '/usr/bin/',
-        'extract_message' => true,
-        'compile_message' => true,
+        //'extract_message' => true,
+        //'compile_message' => true,
     )));
     $session = get_session();
     $logged = $session->get_logged_user();

@@ -4,7 +4,8 @@ function login($l, $p, $dbh) {
     $dbh = SQL_Class::getDB();
     $sql = $dbh->execute("SELECT id
         FROM admin
-        WHERE username = '".addslashes($l)."' AND password = '".md5($p)."'");
+        WHERE username = '".addslashes($l)."' 
+        AND password = '".md5($p)."'");
     if ($sql->num_row() == 1) {
         list($id, $level) = $sql->fetch_array();
         

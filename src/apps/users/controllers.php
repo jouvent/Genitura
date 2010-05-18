@@ -1,7 +1,5 @@
 <?php
 
-require_once 'o/include/function/basket_summary.php';
-
 function view_user($id){
     $user = User::fetch($id);
     if(!$user) throw new NotFoundException();
