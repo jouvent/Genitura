@@ -1,8 +1,5 @@
 Genitura PHP Web Framework
 ==========================
-Being a martial art fan, I burrow a quote.
-
-
 
 Genitura
 --------------------------
@@ -17,8 +14,6 @@ Requirement
 
 Getting started
 ------------------------
-
-
 ### Installation
 TODO
 
