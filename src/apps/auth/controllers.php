@@ -7,9 +7,9 @@ function login_user() {
         if($session->login($_POST['USERNAME'], $_POST['PASSWORD'])) {
             return redirect('/');
         }
-        $error_message = "Invalid email and/or password. Please check your entry.";
+        $error = "Invalid email and/or password. Please check your entry.";
     }
-    return render('login.tpl',array('error'=>$error_message));
+    return render('login.tpl',compact('error'));
 }
 
 function logout_user() {
