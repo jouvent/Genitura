@@ -3,7 +3,7 @@ function render($template_name, $variables = array()){
     if(!isset($_COOKIE['lang'])){
         $lang = 'fr';
     } else {
-        $lang = $_COOKIE['deb_lang'];
+        $lang = $_COOKIE['lang'];
     }
     $h2o = new h2o("templates/$template_name",array(
     'php-i18n' => array(
