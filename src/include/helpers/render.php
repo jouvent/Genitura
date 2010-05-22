@@ -1,7 +1,10 @@
 <?php
 function render($template_name, $variables = array()){
-    $lang = $_COOKIE['deb_lang'];
-    if(!$lang){ $lang = 'fr';}
+    if(!isset($_COOKIE['lang'])){
+        $lang = 'fr';
+    } else {
+        $lang = $_COOKIE['lang'];
+    }
     $h2o = new h2o("templates/$template_name",array(
     'php-i18n' => array(
         'locale' => $lang,
@@ -9,11 +12,12 @@ function render($template_name, $variables = array()){
         'gettext_path' => '/usr/bin/',
         //'extract_message' => true,
         //'compile_message' => true,
+        'tmp_dir' => '/tmp/',
     )));
     $session = get_session();
     $logged = $session->get_logged_user();
     $globals = array(
-        'lang' => $_COOKIE['deb_lang'], 
+        'lang' => $lang, 
         'IMG_URL' => IMG_URL,
         'islogged' => $session->isLogged(),
         'logged' => $logged,

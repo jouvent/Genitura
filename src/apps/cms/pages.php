@@ -6,7 +6,7 @@ function page($slug)
     if(!$page){
         throw new NotFoundException();
     }
-    if($_COOKIE['deb_lang'] == 'fr'){
+    if($_COOKIE['lang'] == 'fr'){
         $page->mapValue('content',$page->content_fr);
         $page->mapValue('title',$page->title_fr);
     } else {
@@ -56,7 +56,7 @@ function page_list()
 {
     $q = Doctrine_Query::create()
             ->from('Pages u');
-    if($_COOKIE['deb_lang'] == 'fr'){
+    if($_COOKIE['lang'] == 'fr'){
             $q->select('u.slug, u.title_fr as title');
     } else {
             $q->select('u.slug, u.title_en as title');

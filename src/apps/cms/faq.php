@@ -4,7 +4,7 @@ function faq()
 {
     $q = Doctrine_Query::create()
             ->from('Faq u');
-    if($_COOKIE['deb_lang'] == 'fr'){
+    if($_COOKIE['lang'] == 'fr'){
             $q->select('u.id, u.question_fr as question, u.response_fr as response');
     } else {
             $q->select('u.id, u.question_en as question, u.response_en as response');
@@ -53,7 +53,7 @@ function faq_list()
 {
     $q = Doctrine_Query::create()
             ->from('Faq u');
-    if($_COOKIE['deb_lang'] == 'fr'){
+    if($_COOKIE['lang'] == 'fr'){
             $q->select('u.id, u.question_fr as question');
     } else {
             $q->select('u.id, u.question_en as question');
