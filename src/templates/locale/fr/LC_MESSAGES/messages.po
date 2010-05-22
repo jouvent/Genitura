@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: template translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-09 23:50-0400\n"
+"POT-Creation-Date: 2010-05-22 10:16-0400\n"
 "PO-Revision-Date: 2009-02-17 16:13+1000\n"
 "Last-Translator: Taylor luk <subjective@gmail.com>\n"
 "Language-Team: \n"
@@ -16,35 +16,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n >= 1);\n"
 
-#: /home/julien/workspace/Genitura/src/templates/page_view.tpl:2
+#: /home/julien/workspace/Genitura/src/templates/organisation_base.tpl:2
 msgid "Home"
 msgstr "Acceuil"
 
-#: /home/julien/workspace/Genitura/src/templates/page_view.tpl:3
+#: /home/julien/workspace/Genitura/src/templates/organisation_base.tpl:3
 msgid "About"
 msgstr "A propos"
 
-#: /home/julien/workspace/Genitura/src/templates/page_view.tpl:4
+#: /home/julien/workspace/Genitura/src/templates/organisation_base.tpl:4
 msgid "Images"
 msgstr "Images"
 
-#: /home/julien/workspace/Genitura/src/templates/page_view.tpl:5
+#: /home/julien/workspace/Genitura/src/templates/organisation_base.tpl:5
 msgid "News"
 msgstr "Nouvelles"
 
-#: /home/julien/workspace/Genitura/src/templates/page_view.tpl:6
+#: /home/julien/workspace/Genitura/src/templates/organisation_base.tpl:6
 msgid "Logout"
 msgstr "D&eacute;conexion"
 
-#: /home/julien/workspace/Genitura/src/templates/page_view.tpl:7
+#: /home/julien/workspace/Genitura/src/templates/organisation_base.tpl:7
 msgid "Login"
 msgstr "Connexion"
 
-#: /home/julien/workspace/Genitura/src/templates/page_view.tpl:10
+#: /home/julien/workspace/Genitura/src/templates/organisation_base.tpl:10
 msgid "What is Genitura?"
 msgstr "Qu'est ce que Genitura ?"
 
-#: /home/julien/workspace/Genitura/src/templates/page_view.tpl:11
+#: /home/julien/workspace/Genitura/src/templates/organisation_base.tpl:11
 msgid ""
 "Genitura is a PHP framework created by Heptacube engineers for optimizing "
 "Web applications development. It takes advantage of the Model View "

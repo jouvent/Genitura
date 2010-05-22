@@ -12,6 +12,7 @@ class session_class {
 
 	function session_class() {
 
+        $session = null;
 		// check for valid a cookie.
 		if (isset($_COOKIE['auth'])) {
             $session = Session::getSession($_COOKIE['auth'],getenv('REMOTE_ADDR'),strtotime('+2'));
@@ -70,7 +71,9 @@ class session_class {
 	}
 
     function get_logged_user() {
-        return $this->session->User;
+        if(isset($this->session)) {
+            return $this->session->User;
+        }
     }
 }
 ?>
