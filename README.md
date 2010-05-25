@@ -17,3 +17,4 @@ Getting started
 ### Installation
 TODO
 
+you have to download the sources first
