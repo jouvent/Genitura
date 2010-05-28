@@ -17,7 +17,7 @@ class session_class {
 		if (isset($_COOKIE['auth'])) {
             $this->session = Session::getSession($_COOKIE['auth'],getenv('REMOTE_ADDR'),strtotime('+2'));
 		}
-        if( $this->session && $session->exists() ) {
+        if( $this->session && $this->session->exists() ) {
             $this->session->expiration = strtotime('+59 minutes');
             $this->logged = true;
         }
