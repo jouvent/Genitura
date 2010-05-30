@@ -69,7 +69,7 @@ class session_class {
 	}
 
     function get_logged_user() {
-        if(isset($this->session)) {
+        if($this->session) {
             return $this->session->User;
         }
     }
