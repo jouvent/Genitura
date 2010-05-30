@@ -5,7 +5,8 @@ function render($template_name, $variables = array()){
     } else {
         $lang = $_COOKIE['lang'];
     }
-    $h2o = new h2o("templates/$template_name",array(
+    $h2o = new h2o("$template_name",array(
+        'searchpath' => 'templates',
     'php-i18n' => array(
         'locale' => $lang,
         'charset' => 'UTF-8',

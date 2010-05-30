@@ -18,6 +18,7 @@ setlocale(LC_TIME, "fr_FR");
 
 //-- START DEFINE --// 
 define("MAIN_URL", $_SERVER['HTTP_HOST']);
+define("IMG_URL", MAIN_URL.'/media/img/');
 
 //-- File system  --//
 $pwd = realpath(dirname(__FILE__)); // here we are
