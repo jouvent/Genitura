@@ -1,70 +1,135 @@
 <?php
-/* $routes is an array of arrays, each sub array must be 3 long with
- * - string $patern (any regexp patern that will be run against the query_string)
- * - string $location ( on the form <file_path>::<function_name>, both have to be valid)
- * - array  $params (any key/value pairs that will be passed to the controler function)
- */
-$paterns = array(
-        // static pages
-        array('^$','flatpages::page',array('home')),
-        // authentication
-        array('^login$','auth::login_user',array()),
-        array('^logout$','auth::logout_user',array()),
-        // lang preferences
-        array('^lang/en$','lang::en',array()),
-        array('^lang/fr','lang::fr',array()),
-        // settings stuff
-        array('^settings$','cms::actions',array()),
-        // faq
-        array('^faq$','cms::faq',array()),
-        array('^faq/add$','cms::faq_add',array()),
-        array('^faq/list$','cms::faq_list',array()),
-        array('^faq/edit/(?<id>\d+)$','cms::faq_edit',array()),
-        // pages
-        array('^page/add$','cms::page_add',array()),
-        array('^page/list$','cms::page_list',array()),
-        array('^page/edit/(?<slug>\w+)$','cms::page_edit',array()),
-        array('^(?<slug>\w+)$','cms::page',array()),
-    );
-
-
-/* return the first matching routes with matching additionnal param if any, return false if no match */
-function route($url, array $routes){
-    // enlever le premier / qui est innutile
-    $url = substr($url,1);
-    // enlever les parametres GET
-    foreach($routes as $route){
-        if(is_array($options = match($url,$route[0]))){
-            $route[2] = array_merge($route[2],$options);
-            return $route;
-        }
+class Router
+{
+    public function Router($url, RouteLoader $routes) {
+        // enlever le premier / qui est innutile
+        $this->url = preg_replace('/^\//','',$url,1);
+        $this->routes = $routes;
     }
-    return false;
-}
 
-/* return false on non matching patern, matched param (only associatives ones) if match */
-function match($url, $patern){
-    $options = array();
-    $params = array();
-
-    // antislash les slashes
-    $patern = str_replace('/','\\/',$patern);
-
-    if(preg_match("/$patern/",$url,$options)){
-        foreach($options as $key => $value){
-            if(is_string($key)){
-                $params[$key] = $value;
+    /**
+     * return the first matching routes with matching additionnal param if any,
+     * return false if no match 
+     */
+    function route() {
+        $routes = $this->routes->getRoutes();
+        foreach($routes as $route){
+            $options = $route->match($this->url);
+            if(is_array($options)){
+                if($route->is_known_location()){
+                    return $route;
+                } else {
+                    $router = new Router($route->simplify($this->url),$route->getLocation());
+                    return $router->route();
+                }
             }
         }
-        return $params;
+        return false;
     }
-    return false;
+
 }
 
-/* include and run given route */
-function load(array $route){
-    $location = explode('::',$route[1]);
-    require_once($location[0].'/init.php');
-    return call_user_func_array($location[1],$route[2]);
+class Route
+{
+    private $patern;
+    private $location;
+    private $options;
+
+    public function Route( $patern, $location, $options = array()) {
+        $this->patern = '/'.str_replace('/','\\/',$patern).'/';
+        $this->location = $location;
+        $this->options = $options;
+    }
+
+    /**
+     * return false on non matching patern, 
+     * return matched param (only associatives ones) if match
+     */
+    public function match($url) {
+        $options = array();
+
+        if(preg_match($this->patern,$url,$options)){
+            foreach($options as $key => $value){
+                if(is_string($key)){
+                    $this->options[$key] = $value;
+                }
+            }
+            return $this->options;
+        }
+        return false;
+    }
+
+    /**
+     * is_known_location 
+     *
+     * a route can lead to others...
+     * this nethod retirn false if location is a collection of 
+     * sub-routes
+     * 
+     * @access public
+     * @return boolean
+     */
+    public function is_known_location() {
+        return is_string($this->location);
+    }
+
+    public function getLocation() {
+        return $this->location;
+    }
+
+    public function getOptions() {
+        return $this->options;
+    }
+
+    /**
+     * simplify
+     *
+     * remove what alredy traveled from the url
+     * return what's left
+     */
+    public function simplify($url) {
+        $patern = $this->patern;
+        return preg_replace($patern,'',$url,1);
+    }
+}
+
+class RouteLoader
+{
+    private $path;
+    private $var_name;
+    private $routes = null;
+
+    public function RouteLoader($path, $var_name = 'urls') {
+        $this->path = $path;
+        $this->var_name = $var_name;
+    }
+
+    public function getRoutes() {
+        if($this->routes === null) {
+            if(file_exists($this->path)) {
+                include($this->path);
+            } else {
+                throw new RuntimeException();
+            }
+            if(isset(${$this->var_name})) {
+                $this->routes = ${$this->var_name};
+            } else {
+                throw new RuntimeException();
+            }
+        }
+        return $this->routes;
+    }
+}
+
+function router($url, $path, $var_name = 'urls') {
+    return new Router($url, new RouteLoader($path, $var_name));
+}
+
+function route($patern, $location, $options =array() ) {
+    return new Route($patern, $location, $options);
+}
+
+function routes($path, $var_name = 'urls') {
+    return new RouteLoader($path, $var_name);
 }
 ?>
