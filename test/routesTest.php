@@ -6,14 +6,15 @@ class RouteLoaderTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
+        $this->pwd = dirname(__FILE__);
     }
 
     public function testLoad() {
-        $routes = new RouteLoader('urls.php');
+        $routes = new RouteLoader($this->pwd.'/urls.php');
     }
 
     public function testIsArray() {
-        $routes = new RouteLoader('urls.php');
+        $routes = new RouteLoader($this->pwd.'/urls.php');
         $this->assertTrue(is_array($routes->getRoutes()));
     }
     /**
@@ -27,11 +28,11 @@ class RouteLoaderTest extends PHPUnit_Framework_TestCase
      * @expectedException RuntimeException
      */
     public function testArrayNotFound() {
-        $routes = new RouteLoader('urls.php','foo');
+        $routes = new RouteLoader($this->pwd.'/urls.php','foo');
         $routes->getRoutes();
     }
 
     public function testWrapper(){
-        $this->assertTrue(is_a(routes('urls.php'),'RouteLoader'));
+        $this->assertTrue(is_a(routes($this->pwd.'/urls.php'),'RouteLoader'));
     }
 }

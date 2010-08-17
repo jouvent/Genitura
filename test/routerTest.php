@@ -1,12 +1,13 @@
 <?php
 require_once('PHPUnit/Framework.php');
-require_once('router.php');
+require_once($pwd.'/router.php');
 
 class RouterTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->routes = new RouteLoader('urls.php');
+        $pwd = dirname(__FILE__);
+        $this->routes = new RouteLoader($pwd.'/urls.php');
     }
 
     public function testLoad() {
