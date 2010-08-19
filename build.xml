@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<project name="Genitura" basedir="." default="test">
+    <target name="build">
+        <phpunit2 haltonfailure="true" printsummary="true">
+            <batchtest>
+                <fileset dir="test">
+                    <include name="*Test.php"/>
+                </fileset>
+            </batchtest>
+        </phpunit2>
+    </target>
+</project>
