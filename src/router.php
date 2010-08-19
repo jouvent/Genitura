@@ -167,7 +167,7 @@ class RouteLoader
             if (file_exists($this->_path)) {
                 include $this->_path;
             } else {
-                throw new RuntimeException();
+                throw new RuntimeException('File '.$this->path.' not found!');
             }
             if (isset(${$this->_var_name})) {
                 $this->_routes = ${$this->_var_name};
