@@ -1,4 +1,19 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * index.php
+ *
+ * PHP version 5
+ *
+ * @category   Boot
+ * @package    Core
+ * @subpackage Core_Boot
+ * @author     Julien Jouvent-Halle <julienhalle@heptacube.com>
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       http://github.com/jouvent/Genitura
+ * @since      0.0.2
+ */
 error_reporting(E_ALL);
 ini_set("display_errors", 1); 
 
@@ -7,9 +22,9 @@ Doctrine_Core::loadModels('include/models/generated');
 Doctrine_Core::loadModels('include/models');
 
 try {
-    $router = router($_SERVER['REQUEST_URI'],'urls.php');
+    $router = router($_SERVER['REQUEST_URI'], 'urls.php');
     $route = $router->route();
-    if($route) {
+    if ($route) {
         echo load($route);
     } else {
         throw new NotFoundException('no route found!!');    
@@ -22,13 +37,22 @@ try {
 } catch ( Exception $e) {
     header('HTTP/1.1 500 Internal Server Error');
     $fields['exception'] = $e;
-    echo render('errors/internal.tpl',$fields);
+    echo render('errors/internal.tpl', $fields);
 }
 
-/* include and run given route */
-function load(Route $route){
-    $location = explode('::',$route->getLocation());
-    require_once($location[0].'/init.php');
-    return call_user_func_array($location[1],$route->getOptions());
+/**
+ * include and run given route 
+ *
+ * @param Route $route the route to be loaded
+ *
+ * @return string the produced HTML to render
+ *
+ * @access public
+ */
+function load(Route $route)
+{
+    $location = explode('::', $route->getLocation());
+    include_once $location[0].'/init.php';
+    return call_user_func_array($location[1], $route->getOptions());
 }
 ?>

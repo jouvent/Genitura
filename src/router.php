@@ -1,25 +1,74 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * router.php
+ *
+ * contain classes needed to find the controller corresponding to given URI
+ *
+ * PHP version 5
+ *
+ * @category   Boot
+ * @package    Core
+ * @subpackage Core_Boot
+ * @author     Julien Jouvent-Halle <julienhalle@heptacube.com>
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       http://github.com/jouvent/Genitura
+ * @since      0.0.2
+ */
+
+/**
+ * Walk through the list of route and find the matching one
+ *
+ * @category   Routing
+ * @package    Core
+ * @subpackage Core_Route
+ * @author     Julien Jouvent-Halle <julienhalle@heptacube.com>
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       http://github.com/jouvent/Genitura
+ * @since      0.0.2
+ */
 class Router
 {
-    public function Router($url, RouteLoader $routes) {
+    /**
+     * the requested url
+     *
+     * @var string 
+     */
+    private $_url;
+    private $_routes;
+
+    /**
+     * sanitize en store params
+     *
+     * @param string      $url    the requested url
+     * @param RouteLoader $routes the Loader for the Route list
+     */
+    public function Router($url, RouteLoader $routes)
+    {
         // enlever le premier / qui est innutile
-        $this->url = preg_replace('/^\//','',$url,1);
-        $this->routes = $routes;
+        $this->_url = preg_replace('/^\//', '', $url, 1);
+        $this->_routes = $routes;
     }
 
     /**
      * return the first matching routes with matching additionnal param if any,
      * return false if no match 
+     *
+     * @return mixed the first matching Route or false if no match
      */
-    function route() {
-        $routes = $this->routes->getRoutes();
-        foreach($routes as $route){
-            $options = $route->match($this->url);
-            if(is_array($options)){
-                if($route->is_known_location()){
+    function route()
+    {
+        $routes = $this->_routes->getRoutes();
+        foreach ($routes as $route) {
+            $options = $route->match($this->_url);
+            if (is_array($options)) {
+                if ($route->isKnownLocation()) {
                     return $route;
                 } else {
-                    $router = new Router($route->simplify($this->url),$route->getLocation());
+                    $simplified_url = $route->simplify($this->_url);
+                    $location = $route->getLocation();
+                    $router = new Router($simplified_url, $location);
                     return $router->route();
                 }
             }
@@ -31,36 +80,38 @@ class Router
 
 class Route
 {
-    private $patern;
-    private $location;
-    private $options;
+    private $_patern;
+    private $_location;
+    private $_options;
 
-    public function Route( $patern, $location, $options = array()) {
-        $this->patern = '/'.str_replace('/','\\/',$patern).'/';
-        $this->location = $location;
-        $this->options = $options;
+    public function Route( $patern, $location, $options = array())
+    {
+        $this->_patern = '/'.str_replace('/', '\\/', $patern).'/';
+        $this->_location = $location;
+        $this->_options = $options;
     }
 
     /**
      * return false on non matching patern, 
      * return matched param (only associatives ones) if match
      */
-    public function match($url) {
+    public function match($url)
+    {
         $options = array();
 
-        if(preg_match($this->patern,$url,$options)){
-            foreach($options as $key => $value){
-                if(is_string($key)){
-                    $this->options[$key] = $value;
+        if (preg_match($this->_patern, $url, $options)) {
+            foreach ($options as $key => $value) {
+                if (is_string($key)) {
+                    $this->_options[$key] = $value;
                 }
             }
-            return $this->options;
+            return $this->_options;
         }
         return false;
     }
 
     /**
-     * is_known_location 
+     * isKnownLocation 
      *
      * a route can lead to others...
      * this nethod retirn false if location is a collection of 
@@ -69,67 +120,77 @@ class Route
      * @access public
      * @return boolean
      */
-    public function is_known_location() {
-        return is_string($this->location);
+    public function isKnownLocation()
+    {
+        return is_string($this->_location);
     }
 
-    public function getLocation() {
-        return $this->location;
+    public function getLocation()
+    {
+        return $this->_location;
     }
 
-    public function getOptions() {
-        return $this->options;
+    public function getOptions()
+    {
+        return $this->_options;
     }
 
     /**
      * simplify
      *
      * remove what alredy traveled from the url
-     * return what's left
+     *
+     * @return string what's left
      */
-    public function simplify($url) {
-        $patern = $this->patern;
-        return preg_replace($patern,'',$url,1);
+    public function simplify($url)
+    {
+        $patern = $this->_patern;
+        return preg_replace($patern, '', $url, 1);
     }
 }
 
 class RouteLoader
 {
-    private $path;
-    private $var_name;
-    private $routes = null;
+    private $_path;
+    private $_var_name;
+    private $_routes = null;
 
-    public function RouteLoader($path, $var_name = 'urls') {
-        $this->path = $path;
-        $this->var_name = $var_name;
+    public function RouteLoader($path, $var_name = 'urls')
+    {
+        $this->_path = $path;
+        $this->_var_name = $var_name;
     }
 
-    public function getRoutes() {
-        if($this->routes === null) {
-            if(file_exists($this->path)) {
-                include($this->path);
+    public function getRoutes()
+    {
+        if ($this->_routes === null) {
+            if (file_exists($this->_path)) {
+                include $this->_path;
             } else {
                 throw new RuntimeException();
             }
-            if(isset(${$this->var_name})) {
-                $this->routes = ${$this->var_name};
+            if (isset(${$this->_var_name})) {
+                $this->_routes = ${$this->_var_name};
             } else {
                 throw new RuntimeException();
             }
         }
-        return $this->routes;
+        return $this->_routes;
     }
 }
 
-function router($url, $path, $var_name = 'urls') {
+function router($url, $path, $var_name = 'urls')
+{
     return new Router($url, new RouteLoader($path, $var_name));
 }
 
-function route($patern, $location, $options =array() ) {
+function route($patern, $location, $options =array() )
+{
     return new Route($patern, $location, $options);
 }
 
-function routes($path, $var_name = 'urls') {
+function routes($path, $var_name = 'urls')
+{
     return new RouteLoader($path, $var_name);
 }
 ?>
