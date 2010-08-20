@@ -1,0 +1,199 @@
+<html>
+ <head>
+  <title>PEAR Coding Standards</title>
+  <style>
+                    body {
+                        background-color: #FFFFFF;
+                        font-size: 14px;
+                        font-family: Arial, Helvetica, sans-serif;
+                        color: #000000;
+                    }
+
+                    h1 {
+                        color: #666666;
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin-top: 0px;
+                        background-color: #E6E7E8;
+                        padding: 20px;
+                        border: 1px solid #BBBBBB;
+                    }
+
+                    h2 {
+                        color: #00A5E3;
+                        font-size: 16px;
+                        font-weight: normal;
+                        margin-top: 50px;
+                    }
+
+                    .code-comparison {
+                        width: 100%;
+                    }
+
+                    .code-comparison td {
+                        border: 1px solid #CCCCCC;
+                    }
+
+                    .code-comparison-title, .code-comparison-code {
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 12px;
+                        color: #000000;
+                        vertical-align: top;
+                        padding: 4px;
+                        width: 50%;
+                        background-color: #F1F1F1;
+                        line-height: 15px;
+                    }
+
+                    .code-comparison-code {
+                        font-family: Courier;
+                        background-color: #F9F9F9;
+                    }
+
+                    .code-comparison-highlight {
+                        background-color: #DDF1F7;
+                        border: 1px solid #00A5E3;
+                        line-height: 15px;
+                    }
+
+                    .tag-line {
+                        text-align: center;
+                        width: 100%;
+                        margin-top: 30px;
+                        font-size: 12px;
+                    }
+
+                    .tag-line a {
+                        color: #000000;
+                    }
+                </style>
+ </head>
+ <body>
+  <h1>PEAR Coding Standards</h1>
+  <h2>Table of Contents</h2>
+  <ul class="toc">
+   <li><a href="#Function-Calls">Function Calls</a></li>
+   <li><a href="#Default-Values-in-Function-Declarations">Default Values in Function Declarations</a></li>
+   <li><a href="#Parameter-Spacing-in-Function-Calls">Parameter Spacing in Function Calls</a></li>
+   <li><a href="#Class-Names">Class Names</a></li>
+   <li><a href="#Function-and-Method-Names">Function and Method Names</a></li>
+   <li><a href="#Including-Code">Including Code</a></li>
+   <li><a href="#Line-Length">Line Length</a></li>
+   <li><a href="#Constant-Names">Constant Names</a></li>
+   <li><a href="#PHP-Constants">PHP Constants</a></li>
+   <li><a href="#PHP-Code-Tags">PHP Code Tags</a></li>
+  </ul>
+  <a name="Function-Calls" />
+  <h2>Function Calls</h2>
+  <p class="text">Functions should be called with no spaces between the function name, the opening parenthesis, and the first parameter; and no space between the last parameter, the closing parenthesis, and the semicolon.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: spaces between parameters</td>
+    <td class="code-comparison-title">Invalid: additional spaces used</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">$var&nbsp;=&nbsp;foo($bar,&nbsp;$baz,&nbsp;$quux);</td>
+    <td class="code-comparison-code">$var&nbsp;=&nbsp;foo<span class="code-comparison-highlight">&nbsp;</span>(<span class="code-comparison-highlight">&nbsp;</span>$bar,&nbsp;$baz,&nbsp;$quux<span class="code-comparison-highlight">&nbsp;</span>)<span class="code-comparison-highlight">&nbsp;</span>;</td>
+   </tr>
+  </table>
+  <a name="Default-Values-in-Function-Declarations" />
+  <h2>Default Values in Function Declarations</h2>
+  <p class="text">Arguments with default values go at the end of the argument list.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: argument with default value at end of declaration</td>
+    <td class="code-comparison-title">Invalid: argument with default value at start of declaration</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">function&nbsp;connect($dsn,&nbsp;<span class="code-comparison-highlight">$persistent&nbsp;=&nbsp;false</span>)</br>{</br>&nbsp;&nbsp;&nbsp;&nbsp;...</br>}</td>
+    <td class="code-comparison-code">function&nbsp;connect(<span class="code-comparison-highlight">$persistent&nbsp;=&nbsp;false</span>,&nbsp;$dsn)</br>{</br>&nbsp;&nbsp;&nbsp;&nbsp;...</br>}</td>
+   </tr>
+  </table>
+  <a name="Parameter-Spacing-in-Function-Calls" />
+  <h2>Parameter Spacing in Function Calls</h2>
+  <p class="text">There must be one space between a comma and a parameter in a function call.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: spaces between parameters</td>
+    <td class="code-comparison-title">Invalid: no space between commas and parameters</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">$var&nbsp;=&nbsp;foo($bar<span class="code-comparison-highlight">,&nbsp;</span>$baz<span class="code-comparison-highlight">,&nbsp;</span>$quux);</td>
+    <td class="code-comparison-code">$var&nbsp;=&nbsp;foo($bar<span class="code-comparison-highlight">,</span>$baz<span class="code-comparison-highlight">,</span>$quux);</td>
+   </tr>
+  </table>
+  <a name="Class-Names" />
+  <h2>Class Names</h2>
+  <p class="text">Classes should be given descriptive names. Avoid using abbreviations where possible. Class names should always begin with an uppercase letter. The PEAR class hierarchy is also reflected in the class name, each level of the hierarchy separated with a single underscore.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Examples of valid class names</td>
+    <td class="code-comparison-title">Examples of invalid class names</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">Log</br>Net_Finger</br>HTML_Upload_Error</td>
+    <td class="code-comparison-code">log</br>NetFinger</br>HTML-Upload-Error</td>
+   </tr>
+  </table>
+  <a name="Function-and-Method-Names" />
+  <h2>Function and Method Names</h2>
+  <p class="text">Functions and methods should be named using the &quot;studly caps&quot; style (also referred to as &quot;bumpy case&quot; or &quot;camel caps&quot;). Functions should in addition have the package name as a prefix, to avoid name collisions between packages. The initial letter of the name (after the prefix) is lowercase, and each letter that starts a new &quot;word&quot; is capitalized.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Examples of valid function names</td>
+    <td class="code-comparison-title">Examples of invalid function names</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">connect()</br>getData()</br>buildSomeWidget()</br>XML_RPC_serializeData()</td>
+    <td class="code-comparison-code">Connect()</br>get_data()</td>
+   </tr>
+  </table>
+  <a name="Including-Code" />
+  <h2>Including Code</h2>
+  <p class="text">Anywhere you are unconditionally including a class file, use <em>require_once</em>. Anywhere you are conditionally including a class file (for example, factory methods), use <em>include_once</em>. Either of these will ensure that class files are included only once. They share the same file list, so you don't need to worry about mixing them - a file included with <em>require_once</em> will not be included again by <em>include_once</em>.</p>
+  <p class="text">Note that <em>include_once</em> and <em>require_once</em> are statements, not functions. Parentheses should not surround the subject filename.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: used as statement</td>
+    <td class="code-comparison-title">Invalid: used as function</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">require_once&nbsp;'PHP/CodeSniffer.php';</td>
+    <td class="code-comparison-code">require_once<span class="code-comparison-highlight">(</span>'PHP/CodeSniffer.php'<span class="code-comparison-highlight">)</span>;</td>
+   </tr>
+  </table>
+  <a name="Line-Length" />
+  <h2>Line Length</h2>
+  <p class="text">It is recommended to keep lines at approximately 85 characters long for better code readability.</p>
+  <a name="Constant-Names" />
+  <h2>Constant Names</h2>
+  <p class="text">Constants should always be all-uppercase, with underscores to separate words.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: all uppercase</td>
+    <td class="code-comparison-title">Invalid: mixed case</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">define('<span class="code-comparison-highlight">FOO_CONSTANT</span>',&nbsp;'foo');</br></br>class&nbsp;FooClass</br>{</br>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;<span class="code-comparison-highlight">FOO_CONSTANT</span>&nbsp;=&nbsp;'foo';</br>}</td>
+    <td class="code-comparison-code">define('<span class="code-comparison-highlight">Foo_Constant</span>',&nbsp;'foo');</br></br>class&nbsp;FooClass</br>{</br>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;<span class="code-comparison-highlight">foo_constant</span>&nbsp;=&nbsp;'foo';</br>}</td>
+   </tr>
+  </table>
+  <a name="PHP-Constants" />
+  <h2>PHP Constants</h2>
+  <p class="text">The <em>true</em>, <em>false</em> and <em>null</em> constants must always be lowercase.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: lowercase constants</td>
+    <td class="code-comparison-title">Invalid: uppercase constants</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">if&nbsp;($var&nbsp;===&nbsp;<span class="code-comparison-highlight">false</span>&nbsp;||&nbsp;$var&nbsp;===&nbsp;<span class="code-comparison-highlight">null</span>)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;<span class="code-comparison-highlight">true</span>;</br>}</td>
+    <td class="code-comparison-code">if&nbsp;($var&nbsp;===&nbsp;<span class="code-comparison-highlight">FALSE</span>&nbsp;||&nbsp;$var&nbsp;===&nbsp;<span class="code-comparison-highlight">NULL</span>)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;<span class="code-comparison-highlight">TRUE</span>;</br>}</td>
+   </tr>
+  </table>
+  <a name="PHP-Code-Tags" />
+  <h2>PHP Code Tags</h2>
+  <p class="text">Always use &lt;?php ?&gt; to delimit PHP code, not the &lt;? ?&gt; shorthand. This is the most portable way to include PHP code on differing operating systems and setups.</p>
+  <div class="tag-line">Documentation generated on Fri, 20 Aug 2010 10:54:51 -0400 by <a href="http://pear.php.net/package/PHP_CodeSniffer">PHP_CodeSniffer 1.2.2</a></div>
+ </body>
+</html>

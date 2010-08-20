@@ -1,6 +1,8 @@
 <?php
+$pwd = realpath(dirname(__FILE__).'/../src').'/';
+
 require_once('PHPUnit/Framework.php');
-require_once('router.php');
+require_once($pwd.'router.php');
 
 class RouteTest extends PHPUnit_Framework_TestCase
 {

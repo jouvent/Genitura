@@ -1,6 +1,6 @@
 <?php
 
 $urls = array(
-        array('^en$','lang::en',array()),
-        array('^fr','lang::fr',array()),
+        route('^en$','lang::en',array()),
+        route('^fr','lang::fr',array()),
     );

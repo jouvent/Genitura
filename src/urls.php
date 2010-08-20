@@ -11,7 +11,7 @@ $urls = array(
         route('^login$','auth::login_user',array()),
         route('^logout$','auth::logout_user',array()),
         // lang preferences
-        route('^lang',routes('lang/urls.php')),
+        route('^lang',routes('apps/lang/urls.php')),
         // settings stuff
         route('^settings$','cms::actions',array()),
         // faq

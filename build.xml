@@ -1,13 +1,32 @@
 <?xml version="1.0"?>
 
-<project name="Genitura" basedir="." default="test">
+<project name="Genitura" basedir="." default="build">
     <target name="build">
-        <phpunit2 haltonfailure="true" printsummary="true">
+        <phpunit haltonfailure="true" printsummary="true">
             <batchtest>
                 <fileset dir="test">
                     <include name="*Test.php"/>
                 </fileset>
             </batchtest>
-        </phpunit2>
+        </phpunit>
+    </target>
+    <target name="valid">
+        <phpmd>
+            <fileset dir="src">
+                <exclude name="include/vendors/**" />
+                <include name="**/*.php"/>
+            </fileset>
+            <formatter type="html" outfile="reports/pmd.html"/>
+        </phpmd>
+
+        <phpcodesniffer
+            standard="PEAR"
+            >
+            <formatter type="summary" usefile="false" />
+            <fileset dir="src">
+                <exclude name="include/vendors/**" />
+                <include name="**/*.php"/>
+            </fileset>
+        </phpcodesniffer>
     </target>
 </project>

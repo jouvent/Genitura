@@ -1,6 +1,6 @@
 <?php
-$pwd = realpath(dirname(__FILE__).'/..').'/';
-require_once $pwd.'src/boot.php';
+$pwd = realpath(dirname(__FILE__).'/../src').'/';
+require_once $pwd.'boot.php';
 require_once 'PHPUnit/Framework.php';
 require_once 'routerTest.php';
 require_once 'routesTest.php';
