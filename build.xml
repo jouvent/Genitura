@@ -8,6 +8,7 @@
                     <include name="*Test.php"/>
                 </fileset>
             </batchtest>
+            <formatter type="xml" todir="reports" outfile="phpunit.xml"/>
         </phpunit>
     </target>
     <target name="valid">
