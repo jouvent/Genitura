@@ -10,14 +10,12 @@
             </batchtest>
             <formatter type="xml" todir="reports" outfile="phpunit.xml"/>
         </phpunit>
-    </target>
-    <target name="valid">
         <phpmd>
             <fileset dir="src">
                 <exclude name="include/vendors/**" />
                 <include name="**/*.php"/>
             </fileset>
-            <formatter type="html" outfile="reports/pmd.html"/>
+            <formatter type="xml" outfile="reports/pmd.xml"/>
         </phpmd>
 
         <phpcodesniffer
