@@ -27,5 +27,14 @@
                 <include name="**/*.php"/>
             </fileset>
         </phpcodesniffer>
+
+        <phpcpd>
+            <fileset dir="src">
+                <exclude name="include/vendors/**" />
+                <include name="**/*.php"/>
+            </fileset>
+            <formatter type="pmd" outfile="reports/cpd.xml"/>
+        </phpcpd>
+
     </target>
 </project>
