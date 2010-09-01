@@ -7,6 +7,7 @@
 $urls = array(
     // static pages
     route('^$','flatpages::page',array('home')),
+    route('^about$','flatpages::page',array('about')),
     // authentication
     route('^login$','auth::login_user',array()),
     route('^logout$','auth::logout_user',array()),
