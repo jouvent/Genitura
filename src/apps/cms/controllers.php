@@ -6,7 +6,7 @@
  *
  * PHP version 5
  *
- * @category Controllee
+ * @category Controller
  * @package  CMS_Controller
  * @author   Julien Jouvent-Halle <julienhalle@heptacube.com>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT License

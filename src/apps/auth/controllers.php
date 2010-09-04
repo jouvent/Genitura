@@ -4,13 +4,13 @@
 /**
  * auth/controllers.php
  *
- * PHP version 5
+ * php version 5
  *
- * @category Controllee
+ * @category Controller
  * @package  Auth_Controller
- * @author   Julien Jouvent-Halle <julienhalle@heptacube.com>
- * @license  http://www.opensource.org/licenses/mit-license.php MIT License
- * @link     http://github.com/jouvent/Genitura
+ * @author   julien jouvent-halle <julienhalle@heptacube.com>
+ * @license  http://www.opensource.org/licenses/mit-license.php mit license
+ * @link     http://github.com/jouvent/genitura
  * @since    0.0.2
  */
 
