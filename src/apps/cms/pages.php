@@ -18,6 +18,8 @@
 /**
  * page 
  * 
+ * @param string $slug the unique url slug for the page
+ *
  * @access public
  * @return string
  */
@@ -25,18 +27,18 @@ function page($slug)
 {
     $data = array();
     $page = Pages::fetchBySlug($slug);
-    if(!$page){
+    if (!$page) {
         throw new NotFoundException();
     }
     if($_COOKIE['lang'] == 'fr'){
-        $page->mapValue('content',$page->content_fr);
-        $page->mapValue('title',$page->title_fr);
+        $page->mapValue('content', $page->content_fr);
+        $page->mapValue('title', $page->title_fr);
     } else {
-        $page->mapValue('content',$page->content_en);
-        $page->mapValue('title',$page->title_en);
+        $page->mapValue('content', $page->content_en);
+        $page->mapValue('title', $page->title_en);
     }
     $data['page'] = $page;
-    return render('page_view.tpl',$data);
+    return render('page_view.tpl', $data);
 }
 
 /**
@@ -49,9 +51,9 @@ function page_add()
 {
     $data = array();
     $page = new Pages();
-    if(is_post()){
+    if (is_post()) {
         $page->fromArray($_POST);
-        if($page->isValid()){
+        if ($page->isValid()) {
             $page->save();
             return redirect('/page/list');
         } else {
@@ -61,7 +63,7 @@ function page_add()
         }
     }
     $data['page'] = $page;
-    return render('page_form.tpl',$data);
+    return render('page_form.tpl', $data);
 }
 
 /**
@@ -75,12 +77,12 @@ function page_edit($slug)
 {
     $data = array();
     $page = Pages::fetchBySlug($slug);
-    if(!$page){
+    if (!$page) {
         throw new NotFoundException();
     }
-    if(is_post()){
+    if (is_post()) {
         $page->fromArray($_POST);
-        if($page->isValid()){
+        if ($page->isValid()) {
             $page->save();
             return redirect('/page/list');
         } else {
@@ -89,7 +91,7 @@ function page_edit($slug)
         }
     }
     $data['page'] = $page;
-    return render('page_form.tpl',$data);
+    return render('page_form.tpl', $data);
 }
 
 /**
@@ -103,11 +105,11 @@ function page_list()
     $data = array();
     $q = Doctrine_Query::create()
             ->from('Pages u');
-    if($_COOKIE['lang'] == 'fr'){
+    if ($_COOKIE['lang'] == 'fr') {
             $q->select('u.slug, u.title_fr as title');
     } else {
             $q->select('u.slug, u.title_en as title');
     }
     $data['pages'] = $q->execute();
-    return render('page_list.tpl',$data);
+    return render('page_list.tpl', $data);
 }

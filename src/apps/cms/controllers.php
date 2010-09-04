@@ -25,6 +25,6 @@ require_once 'cms/pages.php';
 function actions()
 {
     i_am_logged();
-    return render('settings.tpl',array());
+    return render('settings.tpl', array());
 }
 
