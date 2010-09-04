@@ -2,6 +2,7 @@
 
 function page($slug)
 {
+    $data = array();
     $page = Pages::fetchBySlug($slug);
     if(!$page){
         throw new NotFoundException();
@@ -13,11 +14,13 @@ function page($slug)
         $page->mapValue('content',$page->content_en);
         $page->mapValue('title',$page->title_en);
     }
-    return render('page_view.tpl',compact('page'));
+    $data['page'] = $page;
+    return render('page_view.tpl',$data);
 }
 
 function page_add()
 {
+    $data = array();
     $page = new Pages();
     if(is_post()){
         $page->fromArray($_POST);
@@ -30,11 +33,13 @@ function page_add()
             print_r($errors['page']);
         }
     }
-    return render('page_form.tpl',compact('page','errors'));
+    $data['page'] = $page;
+    return render('page_form.tpl',$data);
 }
 
 function page_edit($slug)
 {
+    $data = array();
     $page = Pages::fetchBySlug($slug);
     if(!$page){
         throw new NotFoundException();
@@ -45,15 +50,17 @@ function page_edit($slug)
             $page->save();
             return redirect('/page/list');
         } else {
-            $errors = array();
-            $errors['page'] = format_error($page);
+            $data['errors'] = array();
+            $data['errors']['page'] = format_error($page);
         }
     }
-    return render('page_form.tpl',compact('page','errors'));
+    $data['page'] = $page;
+    return render('page_form.tpl',$data);
 }
 
 function page_list()
 {
+    $data = array();
     $q = Doctrine_Query::create()
             ->from('Pages u');
     if($_COOKIE['lang'] == 'fr'){
@@ -61,6 +68,6 @@ function page_list()
     } else {
             $q->select('u.slug, u.title_en as title');
     }
-    $pages = $q->execute();
-    return render('page_list.tpl',compact('pages'));
+    $data['pages'] = $q->execute();
+    return render('page_list.tpl',$data);
 }

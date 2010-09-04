@@ -2,6 +2,7 @@
 
 function faq()
 {
+    $data = array();
     $q = Doctrine_Query::create()
             ->from('Faq u');
     if($_COOKIE['lang'] == 'fr'){
@@ -9,13 +10,14 @@ function faq()
     } else {
             $q->select('u.id, u.question_en as question, u.response_en as response');
     }
-    $faqs = $q->execute();
-    return render('faq.tpl',compact('faqs'));
+    $data['faqs'] = $q->execute();
+    return render('faq.tpl',$data);
 }
 
 function faq_add()
 {
-    $faq = new Faq();
+    $data = array();
+    $data['faq'] = new Faq();
     if(is_post()){
         $faq->fromArray($_POST);
         $faq->id = null;
@@ -24,14 +26,15 @@ function faq_add()
             return redirect('/faq/list');
         } else {
             $errors = array();
-            $errors['faq'] = get_errors($faq);
+            $data['errors']['faq'] = get_errors($faq);
         }
     }
-    return render('faq_form.tpl',compact('faq','errors'));
+    return render('faq_form.tpl',$data);
 }
 
 function faq_edit($id)
 {
+    $data = array();
     $faq = Faq::fetch($id);
     if(!$faq){
         throw new NotFoundException();
@@ -42,15 +45,17 @@ function faq_edit($id)
             $faq->save();
             return redirect('/faq/list');
         } else {
-            $errors = array();
-            $errors['faq'] = format_error($faq);
+            $data['errors'] = array();
+            $data['errors']['faq'] = format_error($faq);
         }
     }
-    return render('faq_form.tpl',compact('faq','errors'));
+    $data['faq'] = $faq;
+    return render('faq_form.tpl',$data);
 }
 
 function faq_list()
 {
+    $data = array();
     $q = Doctrine_Query::create()
             ->from('Faq u');
     if($_COOKIE['lang'] == 'fr'){
@@ -58,6 +63,6 @@ function faq_list()
     } else {
             $q->select('u.id, u.question_en as question');
     }
-    $faqs = $q->execute();
-    return render('faq_list.tpl',compact('faqs'));
+    $data['faqs'] = $q->execute();
+    return render('faq_list.tpl',$data);
 }
