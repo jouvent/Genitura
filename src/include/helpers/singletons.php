@@ -26,7 +26,7 @@ function get_logged_user()
     static $user;
     if(!$user){
         $session = get_session();
-        $user = User::fetch($session->user_id);
+        $user = $session->get_logged_user();
     }
     return $user;
 }

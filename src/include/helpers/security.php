@@ -10,7 +10,7 @@ function fetch_or_404($class, $id)
 function i_am_logged()
 {
     $session = get_session();
-    if(!$session->logged){ throw new LoginRequiredException(); }
+    if(!$session->islogged()){ throw new LoginRequiredException(); }
     return true;
 }
 

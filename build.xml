@@ -8,25 +8,33 @@
                     <include name="*Test.php"/>
                 </fileset>
             </batchtest>
+            <formatter type="xml" todir="reports" outfile="phpunit.xml"/>
         </phpunit>
-    </target>
-    <target name="valid">
         <phpmd>
             <fileset dir="src">
                 <exclude name="include/vendors/**" />
                 <include name="**/*.php"/>
             </fileset>
-            <formatter type="html" outfile="reports/pmd.html"/>
+            <formatter type="xml" outfile="reports/pmd.xml"/>
         </phpmd>
 
         <phpcodesniffer
             standard="PEAR"
             >
-            <formatter type="summary" usefile="false" />
+            <formatter type="checkstyle" outfile="reports/checkstyle.xml"/>
             <fileset dir="src">
                 <exclude name="include/vendors/**" />
                 <include name="**/*.php"/>
             </fileset>
         </phpcodesniffer>
+
+        <phpcpd>
+            <fileset dir="src">
+                <exclude name="include/vendors/**" />
+                <include name="**/*.php"/>
+            </fileset>
+            <formatter type="pmd" outfile="reports/cpd.xml"/>
+        </phpcpd>
+
     </target>
 </project>

@@ -9,6 +9,7 @@ class MyHtmlFilters extends FilterCollection {
     }
     function select($case,$default='')
     {
+        var_dump($case);
         $select = new select_class($case,$case);
         $select->set_default($default);
 
