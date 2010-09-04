@@ -45,14 +45,14 @@ function faq_add()
 {
     $data = array();
     $data['faq'] = new Faq();
-    if(is_post()){
+    if (is_post()) {
         $faq->fromArray($_POST);
         $faq->id = null;
-        if($faq->isValid()){
+        if ($faq->isValid()) {
             $faq->save();
             return redirect('/faq/list');
         } else {
-            $errors = array();
+            $data['errors'] = array();
             $data['errors']['faq'] = get_errors($faq);
         }
     }
@@ -71,7 +71,7 @@ function faq_edit($id)
 {
     $data = array();
     $faq = Faq::fetch($id);
-    if(!$faq){
+    if (!$faq) {
         throw new NotFoundException();
     }
     if (is_post()) {
