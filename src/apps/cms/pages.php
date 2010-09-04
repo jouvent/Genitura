@@ -1,5 +1,26 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
+/**
+ * cms/page.php
+ *
+ * PHP version 5
+ *
+ * @category   Controllee
+ * @package    CMS_Controller
+ * @subpackage CMS_Page
+ * @author     Julien Jouvent-Halle <julienhalle@heptacube.com>
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       http://github.com/jouvent/Genitura
+ * @since      0.0.2
+ */
+
+/**
+ * page 
+ * 
+ * @access public
+ * @return string
+ */
 function page($slug)
 {
     $data = array();
@@ -18,6 +39,12 @@ function page($slug)
     return render('page_view.tpl',$data);
 }
 
+/**
+ * page_add 
+ * 
+ * @access public
+ * @return string
+ */
 function page_add()
 {
     $data = array();
@@ -37,6 +64,13 @@ function page_add()
     return render('page_form.tpl',$data);
 }
 
+/**
+ * page_edit 
+ * 
+ * @param mixed $slug 
+ * @access public
+ * @return string
+ */
 function page_edit($slug)
 {
     $data = array();
@@ -58,6 +92,12 @@ function page_edit($slug)
     return render('page_form.tpl',$data);
 }
 
+/**
+ * page_list 
+ * 
+ * @access public
+ * @return string
+ */
 function page_list()
 {
     $data = array();

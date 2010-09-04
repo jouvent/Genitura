@@ -1,5 +1,26 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
+/**
+ * cms/faq.php
+ *
+ * PHP version 5
+ *
+ * @category   Controllee
+ * @package    CMS_Controller
+ * @subpackage CMS_FAQ
+ * @author     Julien Jouvent-Halle <julienhalle@heptacube.com>
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       http://github.com/jouvent/Genitura
+ * @since      0.0.2
+ */
+
+/**
+ * faq 
+ * 
+ * @access public
+ * @return string
+ */
 function faq()
 {
     $data = array();
@@ -14,6 +35,12 @@ function faq()
     return render('faq.tpl',$data);
 }
 
+/**
+ * faq_add 
+ * 
+ * @access public
+ * @return string
+ */
 function faq_add()
 {
     $data = array();
@@ -32,6 +59,14 @@ function faq_add()
     return render('faq_form.tpl',$data);
 }
 
+/**
+ * faq_edit 
+ * 
+ * @param string $id unique identifier for te FAQ
+ *
+ * @access public
+ * @return string
+ */
 function faq_edit($id)
 {
     $data = array();
@@ -53,6 +88,12 @@ function faq_edit($id)
     return render('faq_form.tpl',$data);
 }
 
+/**
+ * faq_list 
+ * 
+ * @access public
+ * @return string
+ */
 function faq_list()
 {
     $data = array();
