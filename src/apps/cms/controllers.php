@@ -6,12 +6,12 @@
  *
  * PHP version 5
  *
- * @category   Controllee
- * @package    CMS_Controller
- * @author     Julien Jouvent-Halle <julienhalle@heptacube.com>
- * @license    http://www.opensource.org/licenses/mit-license.php MIT License
- * @link       http://github.com/jouvent/Genitura
- * @since      0.0.2
+ * @category Controllee
+ * @package  CMS_Controller
+ * @author   Julien Jouvent-Halle <julienhalle@heptacube.com>
+ * @license  http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link     http://github.com/jouvent/Genitura
+ * @since    0.0.2
  */
 require_once 'cms/faq.php';
 require_once 'cms/pages.php';
