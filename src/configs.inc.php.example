@@ -11,6 +11,7 @@
  * @package   HeptacubeFramework
  * @author    Julien J. Halle <julienhalle@gmail.com>
  * @copyright 2010 Heptacube inc.
+ * @license   ?? TODO
  * @link      http://genitura.com/
  */
 
@@ -23,11 +24,11 @@ define("IMG_URL", MAIN_URL.'/media/img/');
 //-- File system  --//
 $pwd = realpath(dirname(__FILE__)); // here we are
 define("ROOT", $pwd);
-define('UPLOAD',ROOT.'/upload/');
+define('UPLOAD', ROOT.'/upload/');
 
 //-- SQL settings --//
-define('SQL_USER','');
-define('SQL_PASS','');
-define('SQL_DB'  ,'');
-define('SQL_HOST','');
-define('SQL_URL','mysql:dbname='.SQL_DB.';host='.SQL_HOST);
+define('SQL_USER', '');
+define('SQL_PASS', '');
+define('SQL_DB', '');
+define('SQL_HOST', '');
+define('SQL_URL', 'mysql:dbname='.SQL_DB.';host='.SQL_HOST);
