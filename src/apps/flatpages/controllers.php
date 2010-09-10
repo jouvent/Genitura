@@ -22,6 +22,7 @@
  * @access public
  * @return string
  */
-function page($page) {
+function page($page)
+{
     return render("$page.tpl");
 }
