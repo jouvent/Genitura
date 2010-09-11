@@ -37,7 +37,7 @@ require_once 'errors/exceptions.php';
 require_once 'h2o/h2o.php'; // the template engine
 require_once 'template/filters.php'; // custom filters for the template engine
 
-require_once 'Doctrine.php'; // the ORM engine
+require_once 'doctrine/Doctrine.php'; // the ORM engine
 require_once 'doctrine/doctrine_bootstrap.php';
 
 //-- START INCLUDE --//
