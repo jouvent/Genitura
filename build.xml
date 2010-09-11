@@ -24,6 +24,7 @@
             <formatter type="checkstyle" outfile="reports/checkstyle.xml"/>
             <fileset dir="src">
                 <exclude name="include/vendors/**" />
+                <exclude name="include/models/generated/**" />
                 <include name="**/*.php"/>
             </fileset>
         </phpcodesniffer>
