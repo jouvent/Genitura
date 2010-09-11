@@ -20,24 +20,6 @@ Session:
     User:
       local: user_id
       foreign: id
-Prefs:
-  connection: 0
-  tableName: prefs
-  columns:
-    id:
-      type: integer(8)
-      primary: true
-      autoincrement: true
-    last_save:
-      type: timestamp(25)
-      notnull: true
-    ip:
-      type: string(15)
-      notnull: true
-    lang:
-      type: string(2)
-    referer:
-      type: string(255)
 User:
   connection: 0
   tableName: user
