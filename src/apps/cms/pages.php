@@ -30,7 +30,7 @@ function page($slug)
     if (!$page) {
         throw new NotFoundException();
     }
-    if($_COOKIE['lang'] == 'fr'){
+    if ($_COOKIE['lang'] == 'fr') {
         $page->mapValue('content', $page->content_fr);
         $page->mapValue('title', $page->title_fr);
     } else {
@@ -69,7 +69,8 @@ function page_add()
 /**
  * page_edit 
  * 
- * @param mixed $slug 
+ * @param string $slug the unique url slug for the page
+ *
  * @access public
  * @return string
  */

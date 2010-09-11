@@ -2,7 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * faq/init.php
+ * faq/urls.php
  *
  * PHP version 5
  *
