@@ -6,7 +6,7 @@
  *
  * PHP version 5
  *
- * @category   Controllee
+ * @category   Controller
  * @package    CMS_Controller
  * @subpackage CMS_FAQ
  * @author     Julien Jouvent-Halle <julienhalle@heptacube.com>
