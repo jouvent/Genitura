@@ -26,8 +26,10 @@ function generic_list($object)
 {
     $object_name = get_object_name($object);
     $object_name_plural = get_plural($object_name);
-    $$object_name_plural = Doctrine::getTable($object)->findAll();
-    return render("{$object_name}_list.html", compact($object_name_plural));
+    $objects = Doctrine::getTable($object)->findAll();
+    $data = array();
+    $data[$object_name_plural] = $objects;
+    return render("{$object_name}_list.html", $data);
 }
 
 /**
@@ -42,8 +44,10 @@ function generic_list($object)
 function generic_view($object, $id)
 {
     $object_name = get_object_name($object);
-    $$object_name = Doctrine::getTable('Sprint')->find($id);
-    return render("{$object_name}_view.html", compact($object_name));
+    $object = Doctrine::getTable('Sprint')->find($id);
+    $data = array();
+    $data[$object_name] = $object;
+    return render("{$object_name}_view.html", $data);
 }
 
 /**
@@ -57,17 +61,21 @@ function generic_view($object, $id)
 function generic_add($object)
 {
     $object_name = get_object_name($object);
-    $$object_name = new $object();
+    $object = new $object();
     if (is_post()) {
-        $$object_name->fromArray($_POST);
-        if ($$object_name->isValid()) {
-            $$object_name->save();
+        $object->fromArray($_POST);
+        if ($object->isValid()) {
+            $object->save();
             return redirect('/'.$object_name);
         } else {
-            $message = nl2br($$object_name->getErrorStackAsString());
+            $message = nl2br($object->getErrorStackAsString());
         }
     }
-    return render("{$object_name}_form.html", compact($object_name, 'message'));
+    $data = array();
+    $data['message'] = $message;
+    $data[$object_name] = $object;
+
+    return render("{$object_name}_form.html", $data);
 }
 
 /**
@@ -82,17 +90,21 @@ function generic_add($object)
 function generic_edit($object, $id)
 {
     $object_name = get_object_name($object);
-    $$object_name = Doctrine::getTable($object)->find($id);
+    $object = Doctrine::getTable($object)->find($id);
     if (is_post()) {
-        $$object_name->fromArray($_POST);
-        if ($$object_name->isValid()) {
-            $$object_name->save();
+        $object->fromArray($_POST);
+        if ($object->isValid()) {
+            $object->save();
             return redirect("/$object_name");
         } else {
-            $message = nl2br($$object_name->getErrorStackAsString());
+            $message = nl2br($object->getErrorStackAsString());
         }
     }
-    return render("{$object_name}_form.html", compact($object_name, 'message'));
+    $data = array();
+    $data['message'] = $message;
+    $data[$object_name] = $object;
+
+    return render("{$object_name}_form.html", $data);
 }
 
 /**
@@ -107,8 +119,8 @@ function generic_edit($object, $id)
 function generic_delete($object, $id)
 {
     $object_name = get_object_name($object);
-    $$object_name = Doctrine::getTable($object)->find($id);
-    $$object_name->delete();
+    $object = Doctrine::getTable($object)->find($id);
+    $object->delete();
     return redirect('/'.$object_name);
 }
 
