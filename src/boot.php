@@ -37,13 +37,12 @@ require_once 'errors/exceptions.php';
 require_once 'h2o/h2o.php'; // the template engine
 require_once 'template/filters.php'; // custom filters for the template engine
 
-require_once 'doctrine/Doctrine.php'; // the ORM engine
+require_once 'Doctrine.php'; // the ORM engine
 require_once 'doctrine/doctrine_bootstrap.php';
 
 //-- START INCLUDE --//
 require_once 'sql/sql_class.php';
 require_once 'sql/sql_statement.php';
-require_once 'session/auth.php';
 require_once 'session/session_class.php';
 require_once 'template/select_class.php';
 

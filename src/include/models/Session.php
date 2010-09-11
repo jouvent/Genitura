@@ -43,7 +43,7 @@ class Session extends BaseSession
     {
         $q = Doctrine_Query::create()
             ->from('Session s')
-            ->leftJoin('s.Session u')
+            ->leftJoin('s.User u')
             ->where('s.session_key = ?', $key)
             ->andWhere('s.ip = ?', $ip)
             ->andWhere('s.expiration >= ?', $expiration);
