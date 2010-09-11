@@ -136,56 +136,6 @@ class select_Class {
         case 'boolean_en':
             $arr = array( "Yes", "No");
             break;
-        case 'bus_fr':
-            $dbh = new SQL_Class();
-            $sql = $dbh->execute('SELECT bus_id, name FROM bus');
-            $arr['---'] = 'Tous les bus';
-            $arr['NA'] = 'Sans bus';
-            while(list($id,$name) = $sql->fetch_array()){
-                $arr[$id] = $name;
-            }
-            break;
-        case 'bus_en':
-            $dbh = new SQL_Class();
-            $sql = $dbh->execute('SELECT bus_id, name FROM bus');
-            $arr['---'] = 'All bus';
-            $arr['NA'] = 'No bus';
-            while(list($id,$name) = $sql->fetch_array()){
-                $arr[$id] = $name;
-            }
-            break;
-        case 'groups_fr':
-            $dbh = new SQL_Class();
-            $sql = $dbh->execute('SELECT id, name FROM groupe');
-            $arr['---'] = 'Tous les groupes';
-            $arr['NA'] = 'Sans groupes';
-            while(list($id,$name) = $sql->fetch_array()){
-                $arr[$id] = $name;
-            }
-            break;
-        case 'groups_en':
-            $dbh = new SQL_Class();
-            $sql = $dbh->execute('SELECT id, name FROM groupe');
-            $arr['---'] = 'All groups';
-            $arr['NA'] = 'No groups';
-            while(list($id,$name) = $sql->fetch_array()){
-                $arr[$id] = $name;
-            }
-            break;
-        case 's_bus':
-            $dbh = new SQL_Class();
-            $sql = $dbh->execute('SELECT bus_id, name FROM bus');
-            while(list($id,$name) = $sql->fetch_array()){
-                $arr[$id] = $name;
-            }
-            break;
-        case 's_groups':
-            $dbh = new SQL_Class();
-            $sql = $dbh->execute('SELECT id, name FROM groupe');
-            while(list($id,$name) = $sql->fetch_array()){
-                $arr[$id] = $name;
-            }
-            break;
         }
         return $arr;
     }	
