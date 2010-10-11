@@ -27,6 +27,7 @@ set_include_path(get_include_path()."$ps$pwd/include/vendors");
 /* second we include the basics */
 require_once 'configs.inc.php'; // the app configurations
 require_once 'router.php'; // the url mappings
+require_once 'request/request.php';
 require_once 'helpers/render.php';
 require_once 'helpers/requests.php';
 require_once 'helpers/security.php';
