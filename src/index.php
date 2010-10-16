@@ -17,15 +17,16 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1); 
 
-require_once 'boot.php';
-Doctrine_Core::loadModels('include/models/generated');
-Doctrine_Core::loadModels('include/models');
-
 try {
+    require_once 'boot.php';
+    Doctrine_Core::loadModels('include/models/generated');
+    Doctrine_Core::loadModels('include/models');
+
+    $request = requestFromEnv();
     $router = router($_SERVER['REQUEST_URI'], 'urls.php');
     $route = $router->route();
     if ($route) {
-        echo load($route);
+        echo load($route, $request);
     } else {
         throw new NotFoundException('no route found!!');    
     }
@@ -49,10 +50,11 @@ try {
  *
  * @access public
  */
-function load(Route $route)
+function load(Route $route, Request $request)
 {
     $location = explode('::', $route->getLocation());
     include_once $location[0].'/init.php';
-    return call_user_func_array($location[1], $route->getOptions());
+    $request->addParams($route->getOptions());
+    return call_user_func($location[1], $request);
 }
 ?>

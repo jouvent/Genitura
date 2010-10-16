@@ -20,11 +20,11 @@
  * @access public
  * @return string
  */
-function login_user()
+function login_user($request)
 {
-    $data = new array();
-    if (is_post()) {
-        $session =  get_session();
+    $data = array();
+    if ($request->is_post()) {
+        $session = get_session();
 
         if ($session->login($_POST['USERNAME'], $_POST['PASSWORD'])) {
             return redirect('/');

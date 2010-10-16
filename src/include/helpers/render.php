@@ -45,13 +45,13 @@ function render($template_name, $variables = array())
             )
         )
     );
-    $session = get_session();
-    $logged = $session->get_logged_user();
+    //$session = get_session();
+    //$logged = $session->get_logged_user();
     $globals = array(
         'lang' => $lang, 
         'IMG_URL' => IMG_URL,
-        'islogged' => $session->isLogged(),
-        'logged' => $logged,
+        //'islogged' => $session->isLogged(),
+        //'logged' => $logged,
     );
     return $h2o->render(array_merge($globals, $variables));
 }

@@ -23,8 +23,8 @@
  */
 $urls = array(
     // static pages
-    route('^$', 'flatpages::page', array('home')),
-    route('^about$', 'flatpages::page', array('about')),
+    route('^$', 'flatpages::page', array('page'=>'home')),
+    route('^about$', 'flatpages::page', array('page'=>'about')),
     // authentication
     route('^login$', 'auth::login_user', array()),
     route('^logout$', 'auth::logout_user', array()),
