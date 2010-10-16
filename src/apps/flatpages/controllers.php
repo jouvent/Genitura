@@ -24,6 +24,6 @@
  */
 function page($request)
 {
-    $parge = $request->getParam('page');
+    $page = $request->getParam('page');
     return render("$page.tpl");
 }

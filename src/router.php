@@ -128,7 +128,6 @@ class Route
         $options = array();
 
         if (preg_match($this->_patern, $url, $options)) {
-            print_r($options);
             foreach ($options as $key => $value) {
                 if (is_string($key)) {
                     $this->_options[$key] = $value;
