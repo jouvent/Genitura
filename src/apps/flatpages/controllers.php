@@ -22,7 +22,8 @@
  * @access public
  * @return string
  */
-function page($page)
+function page($request)
 {
+    $page = $request->getParam('page');
     return render("$page.tpl");
 }
