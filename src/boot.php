@@ -42,8 +42,7 @@ require_once 'doctrine/doctrine_bootstrap.php';
 
 //-- START INCLUDE --//
 require_once 'include/request/request.php';
-require_once 'sql/sql_class.php';
-require_once 'sql/sql_statement.php';
+require_once 'include/response/response.php';
 require_once 'session/session_class.php';
 require_once 'template/select_class.php';
 

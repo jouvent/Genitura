@@ -34,21 +34,6 @@ function get_session()
 }
 
 /**
- * get_dbh 
- * 
- * @access public
- * @return SQL_Class
- */
-function get_dbh()
-{
-    static $dbh;
-    if (!$dbh) {
-        $dbh = new SQL_Class;
-    }
-    return $dbh;
-}
-
-/**
  * get_logged_user 
  * 
  * @access public

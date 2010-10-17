@@ -44,7 +44,8 @@ try {
 /**
  * include and run given route 
  *
- * @param Route $route the route to be loaded
+ * @param Route   $route   the route to be loaded
+ * @param Request $request the request datas
  *
  * @return string the produced HTML to render
  *

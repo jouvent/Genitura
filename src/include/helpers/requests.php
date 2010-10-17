@@ -36,9 +36,10 @@ function is_post()
  */
 function redirect($location)
 {
-    if ($location) {
-        return header("Location: $location");
-    } else {
-        return header("Location: /");
-    }
+    return new Redirect($location);
+    //if ($location) {
+        //return header("Location: $location");
+    //} else {
+        //return header("Location: /");
+    //}
 }

@@ -22,8 +22,9 @@
  * @access public
  * @return string
  */
-function generic_list($object)
+function generic_list($request)
 {
+    $object = $request->getParam('object');
     $object_name = get_object_name($object);
     $object_name_plural = get_plural($object_name);
     $objects = Doctrine::getTable($object)->findAll();
@@ -41,10 +42,12 @@ function generic_list($object)
  * @access public
  * @return string
  */
-function generic_view($object, $id)
+function generic_view($request)
 {
+    $object = $request->getParam('object');
+    $id = $request->getParam('id');
     $object_name = get_object_name($object);
-    $object = Doctrine::getTable('Sprint')->find($id);
+    $object = Doctrine::getTable($object)->find($id);
     $data = array();
     $data[$object_name] = $object;
     return render("{$object_name}_view.html", $data);
@@ -58,11 +61,13 @@ function generic_view($object, $id)
  * @access public
  * @return string
  */
-function generic_add($object)
+function generic_add($request)
 {
+    $object = $request->getParam('object');
     $object_name = get_object_name($object);
     $object = new $object();
-    if (is_post()) {
+    $message = '';
+    if ($request->is_post()) {
         $object->fromArray($_POST);
         if ($object->isValid()) {
             $object->save();
@@ -87,11 +92,14 @@ function generic_add($object)
  * @access public
  * @return string
  */
-function generic_edit($object, $id)
+function generic_edit($request)
 {
+    $object = $request->getParam('object');
+    $id = $request->getParam('id');
     $object_name = get_object_name($object);
     $object = Doctrine::getTable($object)->find($id);
-    if (is_post()) {
+    $message = '';
+    if ($request->is_post()) {
         $object->fromArray($_POST);
         if ($object->isValid()) {
             $object->save();
@@ -116,11 +124,15 @@ function generic_edit($object, $id)
  * @access public
  * @return string
  */
-function generic_delete($object, $id)
+function generic_delete($request)
 {
+    $object = $request->getParam('object');
+    $id = $request->getParam('id');
     $object_name = get_object_name($object);
     $object = Doctrine::getTable($object)->find($id);
-    $object->delete();
+    if($object) {
+        $object->delete();
+    }
     return redirect('/'.$object_name);
 }
 

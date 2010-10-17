@@ -23,10 +23,10 @@
  * @access public
  * @return string
  */
-function page($slug)
+function page($request)
 {
     $data = array();
-    $page = Pages::fetchBySlug($slug);
+    $page = Pages::fetchBySlug($slug->getParam('slug'));
     if (!$page) {
         throw new NotFoundException();
     }
